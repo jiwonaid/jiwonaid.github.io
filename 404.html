@@ -33,13 +33,15 @@
             <div class="logo terminal-prompt">
               
               
-              <a href="https://jiwonaid.github.io/" class="no-style ">&gt; /tmp</a>:~/<a href='https://jiwonaid.github.io/404.html'>404.html</a>/$</div></header>
+              <a href="https://jiwonaid.github.io/" class="no-style ">&gt; /tmp</a>:/<spam id="path"><a href='https://jiwonaid.github.io/404.html'>404.html</a>/</spam>$
+              <input autofocus="true"></div></header>
           <nav class="terminal-menu">
             <ul vocab="https://schema.org/" typeof="BreadcrumbList">
                 
             </ul>
           </nav>
         </div>
+        <p id="output">Supported commands: ls, cd ${PATH}</p>
     </div>
 
     <div class="container " >
@@ -53,4 +55,40 @@
 
     </div>
   </body>
+  <script>
+    var input = document.querySelector('input');
+    input.style.width = "1ch";
+
+    input.addEventListener('input', function () {
+      input.style.width = input.value.length + 1 + "ch";
+    });
+
+    input.addEventListener('keydown', function () {
+      if (event.key == 'Enter') {
+        if (input.value == "ls") {
+          var path = document.getElementById("path");
+          var output = document.getElementById("output");
+          var text = ".\n..\n";
+
+          if ( path.innerText == "") {
+            text += "about\nposts";
+          }
+          else if (path.innerText == "posts/") {
+            text += "\/\/posts\/my-second-post\/\/posts\/\/posts\/my-first-post\/\/categories\/\/tags\/";
+            text = text.replace(/\/posts\//g, "");
+            text = text.replace(/\//g, "\n");
+          }
+
+          input.value = "";
+          input.style.width = "1ch";
+          output.innerText = text;
+        }
+        else if (input.value.substr(0, 3) == "cd ") {
+          var text = input.value;
+          text = text.replace("cd ", "");
+          window.location.href = text;
+        }
+      }
+    });
+  </script>
 </html>
