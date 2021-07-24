@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko-kr">
+<html lang="ko-kr" onclick="focusTerminal()">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,7 +36,7 @@
               
               
               <a href="https://jiwonaid.github.io/" class="no-style ">&gt; /tmp</a>:/<spam id="path"><a href='https://jiwonaid.github.io/categories'>categories</a>/</spam>$
-              <input autofocus="true"></div></header>
+              <input id="input" autofocus style="color: transparent; text-shadow: 0 0 0 black;"></div></header>
           <nav class="terminal-menu">
             <ul vocab="https://schema.org/" typeof="BreadcrumbList">
                 
@@ -63,8 +63,13 @@
     </div>
   </body>
   <script>
-    var input = document.querySelector('input');
+    var input = document.getElementById("input");
     input.style.width = "1ch";
+
+    input.blur();
+    function focusTerminal() {
+      input.focus();
+    }
 
     input.addEventListener('input', function () {
       input.style.width = input.value.length + 1 + "ch";
