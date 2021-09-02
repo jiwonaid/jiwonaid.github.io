@@ -6,7 +6,16 @@
     <description>Recent content on &gt; /tmp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-kr</language>
-    <lastBuildDate>Thu, 05 Aug 2021 22:55:27 +0900</lastBuildDate><atom:link href="https://jiwonaid.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 02 Sep 2021 22:07:46 +0900</lastBuildDate><atom:link href="https://jiwonaid.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux Kernel Dev Env Configuration</title>
+      <link>https://jiwonaid.github.io/posts/linux-kernel-dev-env-conf/</link>
+      <pubDate>Thu, 02 Sep 2021 22:07:46 +0900</pubDate>
+      
+      <guid>https://jiwonaid.github.io/posts/linux-kernel-dev-env-conf/</guid>
+      <description>Host sudo apt install snapd # https://multipass.run/docs/installing-on-linux sudo snap install multipass # https://multipass.run/docs/using-libvirt sudo apt install libvirt-daemon-system sudo snap connect multipass:libvirt sudo multipass stop --all sudo multipass set local.driver=libvirt # https://multipass.run/docs/launch-command sudo multipass launch -c 12 -d 128G -m 32G -n mp # Check libvirt virsh console mp Guest vi /etc/default/grub GRUB_DEFAULT=3 GRUB_TIMEOUT_STYLE=menu GRUB_TIMEOUT=3 update-grub2 # https://kernelnewbies.org/KernelBuild apt-get install libncurses5-dev gcc make git exuberant-ctags bc libssl-dev flex bison libelf-dev git clone https://kernel.</description>
+    </item>
+    
     <item>
       <title>cloud-init User-Data Script Re-run</title>
       <link>https://jiwonaid.github.io/posts/cloud-init-user-data-script-re-run/</link>
