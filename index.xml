@@ -6,7 +6,16 @@
     <description>Recent content on &gt; /tmp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-kr</language>
-    <lastBuildDate>Sat, 18 Sep 2021 17:16:24 +0900</lastBuildDate><atom:link href="https://jiwonaid.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 09 Oct 2021 22:22:54 +0900</lastBuildDate><atom:link href="https://jiwonaid.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>리눅스커널이야기</title>
+      <link>https://jiwonaid.github.io/posts/%EB%A6%AC%EB%88%85%EC%8A%A4%EC%BB%A4%EB%84%90%EC%9D%B4%EC%95%BC%EA%B8%B0/</link>
+      <pubDate>Sat, 09 Oct 2021 22:22:54 +0900</pubDate>
+      
+      <guid>https://jiwonaid.github.io/posts/%EB%A6%AC%EB%88%85%EC%8A%A4%EC%BB%A4%EB%84%90%EC%9D%B4%EC%95%BC%EA%B8%B0/</guid>
+      <description>Note: 본 문서는 &amp;#39;리눅스 커널 이야기 - 강진우 저&amp;#39;를 바탕으로 하며 1장 시스템 구성 정보 확인하기 strace # 명령어 정보 출력 uname -a # 커널 정보 출력 dmesg # 커널 ring buffer 메세지 출력 dmidecode -t # 하드웨어 정보 출력 lscpu cat /proc/cpuinfo # cpu 정보 출력 free -m # 메모리 정보 출력 df -h # 디스크 정보 출력 ethtool eth0 # 네트워크 카드 정보 출력 2장 top을 통해 살펴보는 프로세스 정보들 top 3장 Load Average와 시스템 부하 uptime cat /proc/loadavg vmstat cat /proc/sched_debug # 가상 메모리 정보 출력 4장 free 명령이 숨기고 있는 것들 free -m cat /proc/meminfo 5장 swap, 메모리 증설의 포인트 free -m smem -t 6장 NUMA, 메모리 관리의 새로운 세계 7장 TIME_WAIT 소켓이 서비스에 미치는 영향 netstat -napo 8장 </description>
+    </item>
+    
     <item>
       <title>Create a Blog with Github Pages and Actions</title>
       <link>https://jiwonaid.github.io/posts/create-blog-github/</link>
