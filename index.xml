@@ -69,7 +69,10 @@ deploy@vm-instance:~$ systemctl cat cloud-init.target # /lib/systemd/system/clou
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://jiwonaid.github.io/adamantium/</guid>
-      <description>씨유테크 공모청약: 2021-09-29
+      <description>지아이텍 공모청약: 2021-10-13
+경쟁률: 2068.17 :1
+확약: 25.28%
+씨유테크 공모청약: 2021-09-29
 경쟁률: 1565.03:1
 확약: 22.76%
 아스플로 공모청약: 2021-09-28
@@ -86,10 +89,7 @@ deploy@vm-instance:~$ systemctl cat cloud-init.target # /lib/systemd/system/clou
 확약: 7.80%
 현대중공업 공모청약: 2021-09-08
 경쟁률: 1835.87:1
-확약: 53.09%
-와이엠텍 공모청약: 2021-09-01
-경쟁률: 1696.19:1
-확약: 31.59%</description>
+확약: 53.09%</description>
     </item>
     
   </channel>
