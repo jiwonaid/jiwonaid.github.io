@@ -3,63 +3,43 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-	<loc>
-	  https://jiwonaid.github.io/
-	</loc>
+    <loc>https://jiwonaid.github.io/</loc>
   </url>
   
   <url>
-	<loc>
-	  https://jiwonaid.github.io/posts/
-	</loc>
+    <loc>https://jiwonaid.github.io/posts/</loc>
   </url>
   
   <url>
-	<loc>
-	  https://jiwonaid.github.io/posts/lks/
-	</loc>
+    <loc>https://jiwonaid.github.io/posts/lks/</loc>
   </url>
   
   <url>
-	<loc>
-	  https://jiwonaid.github.io/posts/create-blog-github/
-	</loc>
+    <loc>https://jiwonaid.github.io/posts/create-blog-github/</loc>
   </url>
   
   <url>
-	<loc>
-	  https://jiwonaid.github.io/posts/linux-kernel-dev-env-conf/
-	</loc>
+    <loc>https://jiwonaid.github.io/posts/linux-kernel-dev-env-conf/</loc>
   </url>
   
   <url>
-	<loc>
-	  https://jiwonaid.github.io/posts/cloud-init-user-data-script-re-run/
-	</loc>
+    <loc>https://jiwonaid.github.io/posts/cloud-init-user-data-script-re-run/</loc>
   </url>
   
   <url>
-	<loc>
-	  https://jiwonaid.github.io/posts/my-first-post/
-	</loc>
+    <loc>https://jiwonaid.github.io/posts/my-first-post/</loc>
   </url>
   
   <url>
-	<loc>
-	  https://jiwonaid.github.io/adamantium/
-	</loc>
+    <loc>https://jiwonaid.github.io/adamantium/</loc>
   </url>
   
   <url>
-	<loc>
-	  https://jiwonaid.github.io/categories/
-	</loc>
+    <loc>https://jiwonaid.github.io/categories/</loc>
   </url>
   
   <url>
-	<loc>
-	  https://jiwonaid.github.io/tags/
-	</loc>
+    <loc>https://jiwonaid.github.io/tags/</loc>
   </url>
   
 </urlset>
