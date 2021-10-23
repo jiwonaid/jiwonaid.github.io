@@ -165,14 +165,14 @@ Note: 본 문서는 이미 깃헙 페이지로 블로그를 제작한 사람을 
       - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v2</span>
 
       <span style="color:#75715e"># Runs a set of commands using the runners shell</span>
-      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Build the site in the gohugoio/hugo:latest container</span>
+      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Build the site in the hugo container</span>
         <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
 </span><span style="color:#e6db74">          git submodule init ${{ github.workspace }}
 </span><span style="color:#e6db74">          git submodule update ${{ github.workspace }}
 </span><span style="color:#e6db74">
 </span><span style="color:#e6db74">          docker run \
 </span><span style="color:#e6db74">          -v ${{ github.workspace }}:/src -v ${{ github.workspace }}/_site:/src/public \
-</span><span style="color:#e6db74">          klakegg/hugo:0.83.1-busybox
+</span><span style="color:#e6db74">          klakegg/hugo:0.81.0-busybox
 </span><span style="color:#e6db74">
 </span><span style="color:#e6db74">          sudo chmod -R 777 ${{ github.workspace }}/_site</span>          
 
