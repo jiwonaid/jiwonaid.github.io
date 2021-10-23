@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on &gt; /tmp</title>
-    <link>https://jiwonaid.github.io/posts/</link>
+    <link>https://jiwonaid.github.io/posts.html</link>
     <description>Recent content in Posts on &gt; /tmp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-kr</language>
     <lastBuildDate>Sat, 09 Oct 2021 22:22:54 +0900</lastBuildDate><atom:link href="https://jiwonaid.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>리눅스 커널 이야기</title>
-      <link>https://jiwonaid.github.io/posts/lks/</link>
+      <link>https://jiwonaid.github.io/posts/lks.html</link>
       <pubDate>Sat, 09 Oct 2021 22:22:54 +0900</pubDate>
       
-      <guid>https://jiwonaid.github.io/posts/lks/</guid>
+      <guid>https://jiwonaid.github.io/posts/lks.html</guid>
       <description>Note: 본 문서는 &amp;#39;리눅스 커널 이야기 - 강진우 저&amp;#39;와 몇몇 링크들을 참고한 cheat sheet로, 커널의 동작 방식이나 파라미터에 대한 보다 자세한 내용은 책에서 찾아보실 수 있습니다. 1장 시스템 구성 정보 확인하기 uname -a # 커널 정보 출력 dmesg # 커널 ring buffer 메세지 출력 dmidecode -t # 하드웨어 정보 출력 lscpu cat /proc/cpuinfo # cpu 정보 출력 free -m # 메모리 정보 출력 df -h # 디스크 정보 출력 ethtool eth0 # 네트워크 카드 정보 출력 2장 top을 통해 살펴보는 프로세스 정보들 pstree -a ps aux top # 프로세스 정보 출력 3장 Load Average와 시스템 부하 uptime cat /proc/loadavg vmstat cat /proc/sched_debug # 가상 메모리 정보 출력 4장 free 명령이 숨기고 있는 것들 free -m cat /proc/meminfo 5장 swap, 메모리 증설의 포인트 free -m smem -t 6장 NUMA, 메모리 관리의 새로운 세계 7장 TIME_WAIT 소켓이 서비스에 미치는 영향 netstat -napo # 네트워크 정보 출력 8장 TCP Keepalive를 이용한 세션 유지 9장 TCP 재전송과 타임아웃 ss -i # 소켓 정보 출력 10장 dirty page가 I/O에 끼치는 영향 11장 I/O 작업이 지나가는 관문, I/O 스케줄러 iostat iotop -P # I/O 사용량 정보 출력 12장 애플리케이션 성능 측정과 튜닝 - 애플리케이션 워커 수를 cpu 코어 수 이상으로 설정 - 커넥션 풀 방식과 keepalive 옵션 등을 이용해서 TCP TIME_WAIT 소켓을 줄임 Appendix A 커널 디버깅을 위한 커널 컴파일 Appendix B strace를 통한 애플리케이션 분석 strace -s 65535 -f -T -tt # -p &amp;lt;pid&amp;gt; Appendix C tcpdump와 와이어샤크를 통한 TCP 패킷 분석 tcpdump -vvv -nn -A host &amp;lt;IP&amp;gt; and port &amp;lt;port&amp;gt; Reference http://devo.</description>
     </item>
     
     <item>
       <title>Create a Blog with Github Pages and Actions</title>
-      <link>https://jiwonaid.github.io/posts/create-blog-github/</link>
+      <link>https://jiwonaid.github.io/posts/create-blog-github.html</link>
       <pubDate>Sat, 18 Sep 2021 17:16:24 +0900</pubDate>
       
-      <guid>https://jiwonaid.github.io/posts/create-blog-github/</guid>
+      <guid>https://jiwonaid.github.io/posts/create-blog-github.html</guid>
       <description>부제: 깃헙 블로그를 깃헙 액션으로 배포하는 방법 개발자는 블로그를 시작했다! 효과는 미미했다.. Note: 본 문서는 이미 깃헙 페이지로 블로그를 제작한 사람을 대상으로 합니다. 개발자라면 기술 블로그 하나쯤 있어야 하기에 열심히 정적 사이트 생성기를 고르고 나면 배포부터 귀찮아지는 당신을 위한 Github Actions 안내서
 Github Actions 처음 블로그를 생성하고 배포를 여러 번 반복하다 보면 이내 자동화에 대한 욕구가 샘솟게 됩니다.
 물론 가장 직관적인 방법은 휴먼 오퍼레이터나 크론잡을 사용하는 것입니다.
@@ -30,19 +30,19 @@ Github Actions 처음 블로그를 생성하고 배포를 여러 번 반복하�
     
     <item>
       <title>Linux Kernel Dev Env Configuration</title>
-      <link>https://jiwonaid.github.io/posts/linux-kernel-dev-env-conf/</link>
+      <link>https://jiwonaid.github.io/posts/linux-kernel-dev-env-conf.html</link>
       <pubDate>Thu, 02 Sep 2021 22:07:46 +0900</pubDate>
       
-      <guid>https://jiwonaid.github.io/posts/linux-kernel-dev-env-conf/</guid>
+      <guid>https://jiwonaid.github.io/posts/linux-kernel-dev-env-conf.html</guid>
       <description>Host sudo apt install snapd # https://multipass.run/docs/installing-on-linux sudo snap install multipass # https://multipass.run/docs/using-libvirt sudo apt install libvirt-daemon-system sudo snap connect multipass:libvirt sudo multipass stop --all sudo multipass set local.driver=libvirt # https://multipass.run/docs/launch-command sudo multipass launch -c 12 -d 128G -m 32G -n mp # Check libvirt virsh console mp Guest vi /etc/default/grub GRUB_DEFAULT=3 GRUB_TIMEOUT_STYLE=menu GRUB_TIMEOUT=3 update-grub2 # https://kernelnewbies.org/KernelBuild apt-get install libncurses5-dev gcc make git exuberant-ctags bc libssl-dev flex bison libelf-dev git clone https://kernel.</description>
     </item>
     
     <item>
       <title>cloud-init User-Data Script Re-run</title>
-      <link>https://jiwonaid.github.io/posts/cloud-init-user-data-script-re-run/</link>
+      <link>https://jiwonaid.github.io/posts/cloud-init-user-data-script-re-run.html</link>
       <pubDate>Thu, 05 Aug 2021 22:55:27 +0900</pubDate>
       
-      <guid>https://jiwonaid.github.io/posts/cloud-init-user-data-script-re-run/</guid>
+      <guid>https://jiwonaid.github.io/posts/cloud-init-user-data-script-re-run.html</guid>
       <description>User-Data Script의 동작 방식 오픈스택 ubuntu 이미지를 기준으로 작성
 1.사용자가 metadata service나 config drive에 데이터와 스크립트를 제공한다.
 2.cloud-init이 VM이 오픈스택이라는 것을 discovery한다.
@@ -56,10 +56,10 @@ deploy@vm-instance:~$ systemctl cat cloud-init.target # /lib/systemd/system/clou
     
     <item>
       <title>My First Post</title>
-      <link>https://jiwonaid.github.io/posts/my-first-post/</link>
+      <link>https://jiwonaid.github.io/posts/my-first-post.html</link>
       <pubDate>Thu, 22 Jul 2021 20:03:08 +0900</pubDate>
       
-      <guid>https://jiwonaid.github.io/posts/my-first-post/</guid>
+      <guid>https://jiwonaid.github.io/posts/my-first-post.html</guid>
       <description>내 첫 게시글</description>
     </item>
     
