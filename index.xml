@@ -92,10 +92,7 @@ deploy@vm-instance:~$ systemctl cat cloud-init.target # /lib/systemd/system/clou
 확약: 12.10%
 원준 공모청약: 2021-09-28
 경쟁률: 1464.10:1
-확약: 44.30%
-실리콘투 공모청약: 2021-09-15
-경쟁률: 1437.63:1
-확약: 8.37%</description>
+확약: 44.30%</description>
     </item>
     
   </channel>
