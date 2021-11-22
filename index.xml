@@ -88,11 +88,7 @@ deploy@vm-instance:~$ systemctl cat cloud-init.target # /lib/systemd/system/clou
 카카오페이 공모청약: 2021-10-26
 공모가(원): 90,000
 경쟁률: 1714.47:1
-확약: 70.44%
-엔켐 공모청약: 2021-10-22
-공모가(원): 42,000
-경쟁률: 1647.40 :1
-확약: 64.45%</description>
+확약: 70.44%</description>
     </item>
     
   </channel>
