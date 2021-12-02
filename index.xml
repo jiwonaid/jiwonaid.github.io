@@ -80,15 +80,7 @@ deploy@vm-instance:~$ systemctl cat cloud-init.target # /lib/systemd/system/clou
 트윔 공모청약: 2021-11-09
 공모가(원): 22,000
 경쟁률: 1627.34:1:
-확약: 9.20%
-디어유 공모청약: 2021-11-02
-공모가(원): 26,000
-경쟁률: 2001.11:1
-확약: 37.46%
-카카오페이 공모청약: 2021-10-26
-공모가(원): 90,000
-경쟁률: 1714.47:1
-확약: 70.44%</description>
+확약: 9.20%</description>
     </item>
     
   </channel>
