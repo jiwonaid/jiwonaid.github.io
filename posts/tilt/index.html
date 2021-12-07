@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+<head>
+    <meta name="google-site-verification" content="iGuwne5LJzJBBoCxsCg4BhAYCzXlzuvrOufVjQCreyA" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>&gt; /tmp</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+    <link rel="stylesheet" href="https://jiwonaid.github.io/hugo-theme-console/css/terminal-0.7.1.min.css">
+    <link rel="stylesheet" href="https://jiwonaid.github.io/hugo-theme-console/css/animate-3.7.2.min.css">
+    <link rel="stylesheet" href="https://jiwonaid.github.io/hugo-theme-console/css/console.css">
+    
+      <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <meta property="og:title" content="Tilt at Dev Env" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jiwonaid.github.io/posts/tilt/" /><meta property="article:published_time" content="2021-12-07T21:48:35+09:00" />
+
+
+
+<meta name="twitter:title" content="Tilt at Dev Env"/>
+<meta name="twitter:description" content="부제: 개발 환경을 구축하려고 애쓰다.
+목차 Tilt란?
+Using k8s with Tilt
+Using Helm with Tilt
+참고
+Tilt란?  &ldquo;value 변경, helm chart 변경이 너무 불편합니다.&rdquo;
+ 일반적으로 쿠버네티스에 배포하는 것은
+  코드 작성
+  도커 이미지 빌드
+  이미지 레지스트리 푸시
+  쿠버네티스 팟 생성
+  을 반복하는 것인데 조금 더 편하게 배포할 수는 없을까요?
+tilt up # Tilt Control Loop가 개발 환경을 갱신하게 하는 명령어 을 사용하면"/>
+
+</head>
+<body class="terminal">
+    <div class="container">
+        <div class="terminal-nav" onclick="focusTerminal()">
+          <header class="terminal-logo">
+            <div class="logo terminal-prompt">
+              
+              
+              <a href="https://jiwonaid.github.io/" class="no-style ">&gt; /tmp</a>:/<spam id="path"><a href='https://jiwonaid.github.io/posts'>posts</a>/<a href='https://jiwonaid.github.io/posts/tilt'>tilt</a>/</spam>$
+              <input id="input" autofocus style="color: transparent; text-shadow: 0 0 0 black;"></div></header>
+          
+        </div>
+        <p id="output">Supported commands: ls, cd ${PATH}</p>
+    </div>
+
+    <div class="container " >
+        
+<h1>Tilt at Dev Env</h1>
+
+Dec. 7, 2021
+
+
+<br/><br/>
+<p>부제: 개발 환경을 구축하려고 애쓰다.</p>
+<h2 id="목차">목차</h2>
+<p>Tilt란?</p>
+<p>Using k8s with Tilt</p>
+<p>Using Helm with Tilt</p>
+<p>참고</p>
+<h2 id="tilt란">Tilt란?</h2>
+<blockquote>
+<p>&ldquo;value 변경, helm chart 변경이 너무 불편합니다.&rdquo;</p>
+</blockquote>
+<p>일반적으로 쿠버네티스에 배포하는 것은</p>
+<ol>
+<li>
+<p>코드 작성</p>
+</li>
+<li>
+<p>도커 이미지 빌드</p>
+</li>
+<li>
+<p>이미지 레지스트리 푸시</p>
+</li>
+<li>
+<p>쿠버네티스 팟 생성</p>
+</li>
+</ol>
+<p>을 반복하는 것인데 조금 더 편하게 배포할 수는 없을까요?</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tilt up <span style="color:#75715e"># Tilt Control Loop가 개발 환경을 갱신하게 하는 명령어</span>
+</code></pre></div><p>을 사용하면</p>
+<ul>
+<li>
+<p>docker 빌드 캐싱</p>
+</li>
+<li>
+<p>sidercar 패턴의 일종인 Synclet으로 레지스트리 푸시를 스킵하고 기존 팟을 재활용하여 갱신</p>
+</li>
+</ul>
+<p>등이 가능합니다.</p>
+<p>Second Time, Same as the First
+<!-- raw HTML omitted --></p>
+<p>Build in Cloud
+<!-- raw HTML omitted --></p>
+<h2 id="using-k8s-with-tilt">Using k8s with Tilt</h2>
+<p>k8s와 tilt를 함께 사용하려면 kubernetes 클러스터를 본인의 노트북 로컬에서 바로 접근할 수 있어야 합니다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># 노트북 로컬</span>
+
+cat <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>클러스터IP<span style="color:#e6db74">}</span><span style="color:#e6db74"> kubernetes&#34;</span> | sudo tee -a /etc/hosts
+
+cat <span style="color:#e6db74">&lt;&lt; EOD &gt; kubeconfig
+</span><span style="color:#e6db74">apiVersion: v1
+</span><span style="color:#e6db74">clusters:
+</span><span style="color:#e6db74">- cluster:
+</span><span style="color:#e6db74">    certificate-authority-data: ${CAD}
+</span><span style="color:#e6db74">    server: https://kubernetes:6443
+</span><span style="color:#e6db74">  name: dev
+</span><span style="color:#e6db74">contexts:
+</span><span style="color:#e6db74">- context:
+</span><span style="color:#e6db74">    cluster: dev
+</span><span style="color:#e6db74">    user: kubernetes-admin-dev
+</span><span style="color:#e6db74">  name: kubernetes-admin-dev@dev
+</span><span style="color:#e6db74">current-context: kubernetes-admin-dev@dev
+</span><span style="color:#e6db74">kind: Config
+</span><span style="color:#e6db74">preferences: {}
+</span><span style="color:#e6db74">users:
+</span><span style="color:#e6db74">- name: kubernetes-admin-dev
+</span><span style="color:#e6db74">  user:
+</span><span style="color:#e6db74">    client-certificate-data: ${CCD}
+</span><span style="color:#e6db74">    client-key-data: ${CKD}
+</span><span style="color:#e6db74">EOD</span>
+</code></pre></div><p>그리고 tilt를 설치합니다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/install.sh | bash
+</code></pre></div><p>이제 아래와 같이 사용하실 수 있습니다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl --kubeconfig<span style="color:#f92672">=</span>./kubeconfig get ns
+</code></pre></div><h2 id="using-helm-with-tilt">Using Helm with Tilt</h2>
+<p>아래와 같이 Tiltfile을 작성합니다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat <span style="color:#e6db74">&lt;&lt; EOD &gt; Tiltfile
+</span><span style="color:#e6db74">allow_k8s_contexts(&#39;kubernetes-admin-dev@dev&#39;)
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">yaml = helm(
+</span><span style="color:#e6db74">  &#39;path/to/chart/dir&#39;,
+</span><span style="color:#e6db74">  # The release name, equivalent to helm --name
+</span><span style="color:#e6db74">  name=&#39;release-name&#39;,
+</span><span style="color:#e6db74">  # The namespace to install in, equivalent to helm --namespace
+</span><span style="color:#e6db74">  namespace=&#39;my-namespace&#39;,
+</span><span style="color:#e6db74">  # The values file to substitute into the chart.
+</span><span style="color:#e6db74">  values=[&#39;./path/to/chart/dir/values-dev.yaml&#39;],
+</span><span style="color:#e6db74">  # Values to set from the command-line
+</span><span style="color:#e6db74">  set=[&#39;service.port=1234&#39;, &#39;ingress.enabled=true&#39;]
+</span><span style="color:#e6db74">  )
+</span><span style="color:#e6db74">k8s_yaml(yaml)
+</span><span style="color:#e6db74">EOD</span>
+</code></pre></div><p>아래 명령어로 결과를 확인할 수 있습니다.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tilt up
+</code></pre></div><h2 id="참고">참고</h2>
+<ul>
+<li>
+<p><a href="https://medium.com/windmill-engineering/how-tilt-updates-kubernetes-in-seconds-not-minutes-28ddffe2d79f">https://medium.com/windmill-engineering/how-tilt-updates-kubernetes-in-seconds-not-minutes-28ddffe2d79f</a></p>
+</li>
+<li>
+<p><a href="https://leoh0.github.io/petstore/">https://leoh0.github.io/petstore/</a></p>
+</li>
+</ul>
+
+
+
+        <div class="footer">
+    Powered by <a href="https://gohugo.io/">Hugo</a>.
+</div>
+
+    </div>
+  </body>
+  <script>
+    var input = document.getElementById("input");
+    input.style.width = "1ch";
+
+    input.blur();
+    function focusTerminal() {
+      input.focus();
+    }
+
+    input.addEventListener('input', function () {
+      input.style.width = input.value.length + 1 + "ch";
+    });
+
+    input.addEventListener('keydown', function () {
+      if (event.key == 'Enter') {
+        if (input.value == "ls") {
+          var path = document.getElementById("path");
+          var output = document.getElementById("output");
+          var text = ".\n..\n";
+
+          if ( path.innerText == "") {
+            text += "about\nposts";
+          }
+          else if (path.innerText == "posts/") {
+            text += "";
+            text = text.replace(/\/posts\//g, "");
+            text = text.replace(/\//g, "\n");
+          }
+
+          input.value = "";
+          input.style.width = "1ch";
+          output.innerText = text;
+        }
+        else if (input.value.substr(0, 3) == "cd ") {
+          var text = input.value;
+          text = text.replace("cd ", "");
+          window.location.href = text;
+        }
+      }
+    });
+  </script>
+</html>

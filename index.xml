@@ -6,7 +6,28 @@
     <description>Recent content on &gt; /tmp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-kr</language>
-    <lastBuildDate>Sat, 09 Oct 2021 22:22:54 +0900</lastBuildDate><atom:link href="https://jiwonaid.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 07 Dec 2021 21:48:35 +0900</lastBuildDate><atom:link href="https://jiwonaid.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tilt at Dev Env</title>
+      <link>https://jiwonaid.github.io/posts/tilt/</link>
+      <pubDate>Tue, 07 Dec 2021 21:48:35 +0900</pubDate>
+      
+      <guid>https://jiwonaid.github.io/posts/tilt/</guid>
+      <description>부제: 개발 환경을 구축하려고 애쓰다.
+목차 Tilt란?
+Using k8s with Tilt
+Using Helm with Tilt
+참고
+Tilt란?  &amp;ldquo;value 변경, helm chart 변경이 너무 불편합니다.&amp;rdquo;
+ 일반적으로 쿠버네티스에 배포하는 것은
+  코드 작성
+  도커 이미지 빌드
+  이미지 레지스트리 푸시
+  쿠버네티스 팟 생성
+  을 반복하는 것인데 조금 더 편하게 배포할 수는 없을까요?
+tilt up # Tilt Control Loop가 개발 환경을 갱신하게 하는 명령어 을 사용하면</description>
+    </item>
+    
     <item>
       <title>리눅스 커널 이야기</title>
       <link>https://jiwonaid.github.io/posts/lks/</link>
