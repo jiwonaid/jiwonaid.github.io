@@ -131,7 +131,7 @@ cat <span style="color:#e6db74">&lt;&lt; EOD &gt; kubeconfig
 </span><span style="color:#e6db74">    client-key-data: ${CKD}
 </span><span style="color:#e6db74">EOD</span>
 </code></pre></div><p>그리고 tilt를 설치합니다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/install.sh | bash
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brew install tilt
 </code></pre></div><p>이제 아래와 같이 사용하실 수 있습니다.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl --kubeconfig<span style="color:#f92672">=</span>./kubeconfig get ns
 </code></pre></div><h2 id="using-helm-with-tilt">Using Helm with Tilt</h2>
