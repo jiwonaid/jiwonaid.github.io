@@ -95,7 +95,10 @@ Dec. 7, 2021
 <p>docker 빌드 캐싱</p>
 </li>
 <li>
-<p>sidercar 패턴의 일종인 Synclet으로 레지스트리 푸시를 스킵하고 기존 팟을 재활용하여 갱신</p>
+<p>sidecar 패턴의 일종인 Synclet으로 레지스트리 푸시를 스킵하고 기존 팟을 재활용하여 갱신</p>
+<blockquote>
+<p>sidecar: 기본 컨테이너의 변경 없이 보조 컨테이너가 기본 컨테이너와의 공동 작업을 수행하는 패턴</p>
+</blockquote>
 </li>
 </ul>
 <p>등이 가능합니다.</p>
@@ -135,7 +138,26 @@ cat <span style="color:#e6db74">&lt;&lt; EOD &gt; kubeconfig
 </code></pre></div><p>이제 아래와 같이 사용하실 수 있습니다.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl --kubeconfig<span style="color:#f92672">=</span>./kubeconfig get ns
 </code></pre></div><h2 id="using-helm-with-tilt">Using Helm with Tilt</h2>
-<p>아래와 같이 Tiltfile을 작성합니다.</p>
+<p>이제 Tiltfile을 작성해 봅시다. 그런데 Tiltfile이란 무엇인가요?</p>
+<blockquote>
+<p>Summary</p>
+<p>To wrap this up, let’s have a quick recap of Tilt’s control flow:</p>
+<ul>
+<li>
+<p>First, execute the Tiltfile in its entirety, and create resource definitions. Some of these are configured manually, and some Tilt uses heuristics to assemble.</p>
+</li>
+<li>
+<p>Whenever the Tiltfile changes, re-execute it and update the internal resource definitions.</p>
+</li>
+<li>
+<p>Next, the engine executes the resources, and if any resources contain Kubernetes objects, these end up deployed to your cluster.</p>
+</li>
+<li>
+<p>Lastly, resources get updated whenever there’s a triggering event. These can be a definition changing, a relevant file changing, or the user manually triggering the resource.</p>
+</li>
+</ul>
+</blockquote>
+<p>따라서 아래와 같이 Tiltfile을 작성합니다.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat <span style="color:#e6db74">&lt;&lt; EOD &gt; Tiltfile
 </span><span style="color:#e6db74">allow_k8s_contexts(&#39;kubernetes-admin-dev@dev&#39;)
 </span><span style="color:#e6db74">
@@ -158,6 +180,9 @@ cat <span style="color:#e6db74">&lt;&lt; EOD &gt; kubeconfig
 <ul>
 <li>
 <p><a href="https://medium.com/windmill-engineering/how-tilt-updates-kubernetes-in-seconds-not-minutes-28ddffe2d79f">https://medium.com/windmill-engineering/how-tilt-updates-kubernetes-in-seconds-not-minutes-28ddffe2d79f</a></p>
+</li>
+<li>
+<p><a href="https://docs.tilt.dev/controlloop.html">https://docs.tilt.dev/controlloop.html</a></p>
 </li>
 <li>
 <p><a href="https://leoh0.github.io/petstore/">https://leoh0.github.io/petstore/</a></p>
