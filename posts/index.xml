@@ -8,12 +8,13 @@
     <language>ko-kr</language>
     <lastBuildDate>Tue, 14 Dec 2021 19:42:02 +0900</lastBuildDate><atom:link href="https://jiwonaid.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>The Kubebuilder [Quick Start](&lt;https://book.kubebuilder.io/quick-start.html&gt;)</title>
+      <title>The Kubebuilder Quick Start</title>
       <link>https://jiwonaid.github.io/posts/kqs/</link>
       <pubDate>Tue, 14 Dec 2021 19:42:02 +0900</pubDate>
       
       <guid>https://jiwonaid.github.io/posts/kqs/</guid>
-      <description>Installation brew install kubebuilder Create a Project mkdir guestbook cd guestbook kubebuilder init --domain my.domain --repo my.domain/guestbook Create an API kubebuilder create api --group webapp --version v1 --kind Guestbook 그렇다면 Resource와 Controller를 생성하지 않으면 어떻게 되는가?
+      <description>https://book.kubebuilder.io/quick-start.html
+Installation brew install kubebuilder Create a Project mkdir guestbook cd guestbook kubebuilder init --domain my.domain --repo my.domain/guestbook Create an API kubebuilder create api --group webapp --version v1 --kind Guestbook 그렇다면 Resource와 Controller를 생성하지 않으면 어떻게 되는가?
 Create Resource [y/n] n Create Controller [y/n] n diff --git a/guestbook/PROJECT b/guestbook/PROJECT index f7ecce0..9310789 100644 --- a/guestbook/PROJECT +++ b/guestbook/PROJECT @@ -3,4 +3,9 @@ layout:  - go.kubebuilder.io/v3 projectName: guestbook repo: my.domain/guestbook +resources: +- domain: my.</description>
     </item>
     
