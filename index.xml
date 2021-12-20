@@ -101,11 +101,7 @@ deploy@vm-instance:~$ systemctl cat cloud-init.target # /lib/systemd/system/clou
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://jiwonaid.github.io/adamantium/</guid>
-      <description>알비더블유 공모청약: 2021-11-12
-공모가(원): 21,400
-일반청약자: 313,250~375,900 주 (25~30%) / 청약한도: 15,500~18,500 주 / 미래에셋증권
-경쟁률: 1719.61 :1
-확약: 15.98%</description>
+      <description></description>
     </item>
     
   </channel>
