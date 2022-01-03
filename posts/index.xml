@@ -6,7 +6,20 @@
     <description>Recent content in Posts on &gt; /tmp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-kr</language>
-    <lastBuildDate>Tue, 14 Dec 2021 19:42:02 +0900</lastBuildDate><atom:link href="https://jiwonaid.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 03 Jan 2022 12:39:55 +0900</lastBuildDate><atom:link href="https://jiwonaid.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello RabbitMQ Go</title>
+      <link>https://jiwonaid.github.io/posts/rmq/</link>
+      <pubDate>Mon, 03 Jan 2022 12:39:55 +0900</pubDate>
+      
+      <guid>https://jiwonaid.github.io/posts/rmq/</guid>
+      <description>https://www.rabbitmq.com/tutorials/tutorial-one-go.html
+Introduction Producer: A program that sends messages.
+Broker(Exchange+Binding+Queue): A queue is essentially a large message buffer and bound by the host&amp;rsquo;s memory &amp;amp; disk limits.
+Consumer: A program that mostly waits to receive messages.
+Installation brew install rabbitmq go get github.com/streadway/amqp Sending(Producer) // https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/go/send.go package main import ( &amp;#34;log&amp;#34; &amp;#34;github.com/streadway/amqp&amp;#34; ) func failOnError(err error, msg string) { if err != nil { log.Panicf(&amp;#34;%s: %s&amp;#34;, msg, err) } } func main() { conn, err := amqp.</description>
+    </item>
+    
     <item>
       <title>The Kubebuilder Quick Start</title>
       <link>https://jiwonaid.github.io/posts/kqs/</link>
