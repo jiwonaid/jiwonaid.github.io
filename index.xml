@@ -114,7 +114,11 @@ deploy@vm-instance:~$ systemctl cat cloud-init.target # /lib/systemd/system/clou
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://jiwonaid.github.io/adamantium/</guid>
-      <description></description>
+      <description>케이옥션 공모청약: 2022-01-13
+공모가(원): 20,000
+일반청약자: 400,000~480,000 주 (25~30%) / 청약한도: 13,300~16,000 주 / 신영증권
+경쟁률: 1638.36:1
+확약: 36.80%</description>
     </item>
     
   </channel>
