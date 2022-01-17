@@ -114,7 +114,12 @@ deploy@vm-instance:~$ systemctl cat cloud-init.target # /lib/systemd/system/clou
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://jiwonaid.github.io/adamantium/</guid>
-      <description>케이옥션 공모청약: 2022-01-13
+      <description>LG에너지솔루션 공모청약: 2022-01-19
+공모가(원): 300,000
+일반청약자: 10,625,000~12,750,000 주 (25~30 / 청약한도: 162,000~194,000 주 / KB증권
+경쟁률: 2023.37:1
+확약: 77.38%
+케이옥션 공모청약: 2022-01-13
 공모가(원): 20,000
 일반청약자: 400,000~480,000 주 (25~30%) / 청약한도: 13,300~16,000 주 / 신영증권
 경쟁률: 1638.36:1
