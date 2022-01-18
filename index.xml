@@ -114,7 +114,12 @@ deploy@vm-instance:~$ systemctl cat cloud-init.target # /lib/systemd/system/clou
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://jiwonaid.github.io/adamantium/</guid>
-      <description>LG에너지솔루션 공모청약: 2022-01-19
+      <description>이지트로닉스 공모청약: 2022-01-21
+공모가(원): 22,000
+일반청약자: 495,000~594,000 주 (25~30%) / 청약한도: 19,600~23,600 주 / NH투자증권
+경쟁률: 1343.51:1
+확약: 2.94%
+LG에너지솔루션 공모청약: 2022-01-19
 공모가(원): 300,000
 일반청약자: 10,625,000~12,750,000 주 (25~30 / 청약한도: 162,000~194,000 주 / KB증권
 경쟁률: 2023.37:1
