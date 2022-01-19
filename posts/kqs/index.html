@@ -25,9 +25,8 @@
 
 
 <meta name="twitter:title" content="The Kubebuilder Quick Start"/>
-<meta name="twitter:description" content="https://book.kubebuilder.io/quick-start.html
-Installation brew install kubebuilder Create a Project mkdir guestbook cd guestbook kubebuilder init --domain my.domain --repo my.domain/guestbook Create an API kubebuilder create api --group webapp --version v1 --kind Guestbook 그렇다면 Resource와 Controller를 생성하지 않으면 어떻게 되는가?
-Create Resource [y/n] n Create Controller [y/n] n diff --git a/guestbook/PROJECT b/guestbook/PROJECT index f7ecce0..9310789 100644 --- a/guestbook/PROJECT &#43;&#43;&#43; b/guestbook/PROJECT @@ -3,4 &#43;3,9 @@ layout:  - go.kubebuilder.io/v3 projectName: guestbook repo: my.domain/guestbook &#43;resources: &#43;- domain: my."/>
+<meta name="twitter:description" content="칼끝에 선 개발자를 위한 Note 오퍼레이터 기본 개념: http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&amp;mallGb=KOR&amp;barcode=9791161754789&amp;orderClick=LAG&amp;Kc= - 한 줄 요약: 오퍼레이터는 CRD와 동작(controller&#39;s reconciling)으로 구성되며 클러스터의 상태를 선언된 형상으로 맞춰나가기 위한 동작을 반복한다. 오퍼레이터 개발 도구: https://book.kubebuilder.io/ - 한 줄 요약: kube-controller-manager가 여러 kubernetes 네이티브 컨트롤러들을 관리하는 것과 같이 manager에 여러 컨트롤러들을 추가할 수 있는 controller-runtime 기반의 도구 오퍼레이터 best practices 개요: https://github.com/cncf/tag-app-delivery/blob/main/operator-wg/whitepaper/Operator-WhitePaper_v1-0.md#emerging-patterns-of-the-future https://book.kubebuilder.io/quick-start.html
+Installation brew install kubebuilder Create a Project mkdir guestbook cd guestbook kubebuilder init --domain my."/>
 
 </head>
 <body class="terminal">
@@ -52,7 +51,18 @@ Dec. 14, 2021
 
 
 <br/><br/>
-<p><a href="https://book.kubebuilder.io/quick-start.html">https://book.kubebuilder.io/quick-start.html</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">칼끝에 선 개발자를 위한 Note
+
+오퍼레이터 기본 개념: http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR<span style="color:#960050;background-color:#1e0010">&amp;</span>mallGb=KOR<span style="color:#960050;background-color:#1e0010">&amp;</span>barcode=9791161754789<span style="color:#960050;background-color:#1e0010">&amp;</span>orderClick=LAG<span style="color:#960050;background-color:#1e0010">&amp;</span>Kc=
+
+ <span style="color:#66d9ef">-</span> 한 줄 요약: 오퍼레이터는 CRD와 동작(controller&#39;s reconciling)으로 구성되며 클러스터의 상태를 선언된 형상으로 맞춰나가기 위한 동작을 반복한다.
+
+오퍼레이터 개발 도구: https://book.kubebuilder.io/
+
+ <span style="color:#66d9ef">-</span> 한 줄 요약: kube-controller-manager가 여러 kubernetes 네이티브 컨트롤러들을 관리하는 것과 같이 manager에 여러 컨트롤러들을 추가할 수 있는 controller-runtime 기반의 도구
+
+오퍼레이터 best practices 개요: https://github.com/cncf/tag-app-delivery/blob/main/operator-wg/whitepaper/Operator-WhitePaper_v1-0.md#emerging-patterns-of-the-future
+</code></pre></div><p><a href="https://book.kubebuilder.io/quick-start.html">https://book.kubebuilder.io/quick-start.html</a></p>
 <h2 id="installation">Installation</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brew install kubebuilder
 </code></pre></div><h2 id="create-a-project">Create a Project</h2>
@@ -121,7 +131,7 @@ index cb92e51..79fbbbc 100644
 </span><span style="color:#f92672"></span><span style="color:#a6e22e">+++ b/guestbook/controllers/guestbook_controller.go
 </span><span style="color:#a6e22e"></span><span style="color:#75715e">@@ -50,6 +50,15 @@ func (r *GuestbookReconciler) Reconcile(ctx context.Context, req ctrl.Request) (
 </span><span style="color:#75715e"></span> 	_ = log.FromContext(ctx)
- 
+
  	// TODO(user): your logic here
 <span style="color:#a6e22e">+	guestBook := &amp;webappv1.Guestbook{}
 </span><span style="color:#a6e22e">+	_ = r.Get(ctx, req.NamespacedName, guestBook)
@@ -132,7 +142,7 @@ index cb92e51..79fbbbc 100644
 </span><span style="color:#a6e22e">+
 </span><span style="color:#a6e22e">+		_ = r.Update(ctx, guestBook, &amp;client.UpdateOptions{})
 </span><span style="color:#a6e22e">+	}
-</span><span style="color:#a6e22e"></span> 
+</span><span style="color:#a6e22e"></span>
  	return ctrl.Result{}, nil
  }
 </code></pre></div><h2 id="install-the-crds-into-the-cluster">Install the CRDs into the cluster</h2>
