@@ -31,7 +31,7 @@ Introduction 클러스터를 하나씩 나누어주면 비용, scale out, 자원
 이를 통해서 여러 사용자가 분리된 환경에서 공평하게 하나의 클러스터를 나누어 쓸 수 있습니다.
 CheckList 중요 항목을 [ ]로 표기했습니다.
 Access Control
-- [ ] Authentication: IAM - [ ] Authorization: RBAC  Resource Sharing"/>
+- [ ] Authentication: IAM - [ ] Authorization: RBAC 테넌트 관리자(네임스페이스 관리자), 테넌트 개발자(네임스페이스 관리자, 네임스페이스 뷰어), https://cloud."/>
 
 </head>
 <body class="terminal">
@@ -68,6 +68,7 @@ Jan. 20, 2022
 <pre><code>- [ ] Authentication: IAM
 
 - [ ] Authorization: RBAC
+테넌트 관리자(네임스페이스 관리자), 테넌트 개발자(네임스페이스 관리자, 네임스페이스 뷰어), https://cloud.google.com/kubernetes-engine/docs/best-practices/enterprise-multitenancy#tenant-rbac
 </code></pre>
 <p>Resource Sharing</p>
 <pre><code>- [ ] Quotas(namespace)
@@ -95,13 +96,16 @@ Jan. 20, 2022
 <h2 id="tools">Tools</h2>
 <ul>
 <li>
+<p><a href="https://github.com/loft-sh/kiosk">kiosk</a>: 쿠버네티스 네임스페이스 격리 도구</p>
+</li>
+<li>
+<p><a href="https://www.vcluster.com/">vcluster</a>: 호스트 쿠버네티스의 네임스페이스에 가상 쿠버네티스 클러스터를 만들어주는 도구(다만, vcluster control plane 파드가 추가로 떠야 한다.)</p>
+</li>
+<li>
 <p><a href="https://github.com/kubernetes-sigs/multi-tenancy/tree/master/benchmarks">Multi-Tenancy Benchmarks (MTB)</a>: 네임스페이스 별로 Multi-Tenancy 구성을 확인할 수 있는 도구</p>
 </li>
 <li>
 <p><a href="https://kubernetes.io/blog/2020/08/14/introducing-hierarchical-namespaces/">Hierarchical Namespace Controller (HNC)</a>: 사용자가 네임스페이스를 생성할 수 있게 해주는 프로젝트</p>
-</li>
-<li>
-<p><a href="https://www.vcluster.com/">vcluster</a>: 호스트 쿠버네티스의 네임스페이스에 가상 쿠버네티스 클러스터를 만들어주는 도구(다만, vcluster control plane 파드가 추가로 떠야 한다.)</p>
 </li>
 </ul>
 <h2 id="reference">Reference</h2>
