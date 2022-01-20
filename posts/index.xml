@@ -6,7 +6,20 @@
     <description>Recent content in Posts on &gt; /tmp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-kr</language>
-    <lastBuildDate>Mon, 03 Jan 2022 12:39:55 +0900</lastBuildDate><atom:link href="https://jiwonaid.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 20 Jan 2022 16:25:34 +0900</lastBuildDate><atom:link href="https://jiwonaid.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubernetes Multi-tenancy</title>
+      <link>https://jiwonaid.github.io/posts/km/</link>
+      <pubDate>Thu, 20 Jan 2022 16:25:34 +0900</pubDate>
+      
+      <guid>https://jiwonaid.github.io/posts/km/</guid>
+      <description>부제: Namespaces as a Service를 제공해야 누군가가 떠먹여줬으면 하는 개발자를 위한 정리
+Introduction 클러스터를 하나씩 나누어주면 비용, scale out, 자원의 효율성 등에서 문제가 발생합니다.
+가장 빠른 해결 방법은 아래와 같이 하나의 클러스터를 네임스페이스로 나누어서 여러 tenant들에게 나누어 주는 것입니다.
+Reference https://www.youtube.com/watch?v=NN5vLUaa_Ko
+https://kubernetes.io/blog/2021/04/15/three-tenancy-models-for-kubernetes/#namespaces-as-a-service</description>
+    </item>
+    
     <item>
       <title>Hello RabbitMQ Go</title>
       <link>https://jiwonaid.github.io/posts/rmq/</link>
