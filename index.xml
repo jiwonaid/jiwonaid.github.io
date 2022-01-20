@@ -16,8 +16,11 @@
       <description>부제: Namespaces as a Service를 제공해야 누군가가 떠먹여줬으면 하는 개발자를 위한 정리
 Introduction 클러스터를 하나씩 나누어주면 비용, scale out, 자원의 효율성 등에서 문제가 발생합니다.
 가장 빠른 해결 방법은 아래와 같이 하나의 클러스터를 네임스페이스로 나누어서 여러 tenant들에게 나누어 주는 것입니다.
-Reference https://www.youtube.com/watch?v=NN5vLUaa_Ko
-https://kubernetes.io/blog/2021/04/15/three-tenancy-models-for-kubernetes/#namespaces-as-a-service</description>
+이를 통해서 여러 사용자가 분리된 환경에서 공평하게 하나의 클러스터를 나누어 쓸 수 있습니다.
+CheckList 중요 항목을 [ ]로 표기했습니다.
+  Access Control
+  Authentication: IAM
+  Authorization: RBAC</description>
     </item>
     
     <item>
