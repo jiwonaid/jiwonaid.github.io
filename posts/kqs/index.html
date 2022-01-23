@@ -65,19 +65,19 @@ Dec. 14, 2021
 </ul>
 <p>오퍼레이터 best practices 개요: <a href="https://github.com/cncf/tag-app-delivery/blob/main/operator-wg/whitepaper/Operator-WhitePaper_v1-0.md#emerging-patterns-of-the-future">https://github.com/cncf/tag-app-delivery/blob/main/operator-wg/whitepaper/Operator-WhitePaper_v1-0.md#emerging-patterns-of-the-future</a></p>
 <h2 id="installation">Installation</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brew install kubebuilder
-</code></pre></div><h2 id="create-a-project">Create a Project</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mkdir guestbook
+<pre><code>brew install kubebuilder
+</code></pre><h2 id="create-a-project">Create a Project</h2>
+<pre><code>mkdir guestbook
 cd guestbook
 kubebuilder init --domain my.domain --repo my.domain/guestbook
-</code></pre></div><h2 id="create-an-api">Create an API</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubebuilder create api --group webapp --version v1 --kind Guestbook
-</code></pre></div><p>그렇다면 Resource와 Controller를 생성하지 않으면 어떻게 되는가?</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Create Resource <span style="color:#f92672">[</span>y/n<span style="color:#f92672">]</span>
+</code></pre><h2 id="create-an-api">Create an API</h2>
+<pre><code>kubebuilder create api --group webapp --version v1 --kind Guestbook
+</code></pre><p>그렇다면 Resource와 Controller를 생성하지 않으면 어떻게 되는가?</p>
+<pre><code>Create Resource [y/n]
 n
-Create Controller <span style="color:#f92672">[</span>y/n<span style="color:#f92672">]</span>
+Create Controller [y/n]
 n
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff">diff --git a/guestbook/PROJECT b/guestbook/PROJECT
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff">diff --git a/guestbook/PROJECT b/guestbook/PROJECT
 index f7ecce0..9310789 100644
 <span style="color:#f92672">--- a/guestbook/PROJECT
 </span><span style="color:#f92672"></span><span style="color:#a6e22e">+++ b/guestbook/PROJECT
@@ -91,13 +91,13 @@ index f7ecce0..9310789 100644
 </span><span style="color:#a6e22e">+  kind: Guestbook
 </span><span style="color:#a6e22e">+  version: v1
 </span><span style="color:#a6e22e"></span> version: &#34;3&#34;
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Create Resource <span style="color:#f92672">[</span>y/n<span style="color:#f92672">]</span>
+</code></pre></div><pre><code>Create Resource [y/n]
 y
-<span style="color:#75715e"># api definition, CRD, rbac등을 생성</span>
-Create Controller <span style="color:#f92672">[</span>y/n<span style="color:#f92672">]</span>
+# api definition, CRD, rbac등을 생성
+Create Controller [y/n]
 y
-<span style="color:#75715e"># ${PROJECT}_controller.go 코드 생성</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff">diff --git a/guestbook/PROJECT b/guestbook/PROJECT
+# ${PROJECT}_controller.go 코드 생성
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-diff" data-lang="diff">diff --git a/guestbook/PROJECT b/guestbook/PROJECT
 index f7ecce0..8a42803 100644
 <span style="color:#f92672">--- a/guestbook/PROJECT
 </span><span style="color:#f92672"></span><span style="color:#a6e22e">+++ b/guestbook/PROJECT
@@ -147,28 +147,28 @@ index cb92e51..79fbbbc 100644
  	return ctrl.Result{}, nil
  }
 </code></pre></div><h2 id="install-the-crds-into-the-cluster">Install the CRDs into the cluster</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make install
-</code></pre></div><h2 id="run-controller">Run controller</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># At shell 1</span>
+<pre><code>make install
+</code></pre><h2 id="run-controller">Run controller</h2>
+<pre><code># At shell 1
 make run
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># At shell 2</span>
+</code></pre><pre><code># At shell 2
 kubectl apply -f config/samples/
-</code></pre></div><h2 id="result">Result</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#f92672">(</span>kubernetes-admin-dev@dev<span style="color:#f92672">)</span> ☁  guestbook <span style="color:#f92672">[</span>main<span style="color:#f92672">]</span> ⚡  make run
-~/Projects/d-controller/guestbook/bin/controller-gen rbac:roleName<span style="color:#f92672">=</span>manager-role crd webhook paths<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./...&#34;</span> output:crd:artifacts:config<span style="color:#f92672">=</span>config/crd/bases
-~/Projects/d-controller/guestbook/bin/controller-gen object:headerFile<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hack/boilerplate.go.txt&#34;</span> paths<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./...&#34;</span>
+</code></pre><h2 id="result">Result</h2>
+<pre><code>(kubernetes-admin-dev@dev) ☁  guestbook [main] ⚡  make run
+~/Projects/d-controller/guestbook/bin/controller-gen rbac:roleName=manager-role crd webhook paths=&quot;./...&quot; output:crd:artifacts:config=config/crd/bases
+~/Projects/d-controller/guestbook/bin/controller-gen object:headerFile=&quot;hack/boilerplate.go.txt&quot; paths=&quot;./...&quot;
 go fmt ./...
 api/v1/zz_generated.deepcopy.go
 go vet ./...
 go run ./main.go
-2021-12-13T15:55:09.156+0900	INFO	controller-runtime.metrics	metrics server is starting to listen	<span style="color:#f92672">{</span><span style="color:#e6db74">&#34;addr&#34;</span>: <span style="color:#e6db74">&#34;:8080&#34;</span><span style="color:#f92672">}</span>
+2021-12-13T15:55:09.156+0900	INFO	controller-runtime.metrics	metrics server is starting to listen	{&quot;addr&quot;: &quot;:8080&quot;}
 2021-12-13T15:55:09.156+0900	INFO	setup	starting manager
-2021-12-13T15:55:09.156+0900	INFO	starting metrics server	<span style="color:#f92672">{</span><span style="color:#e6db74">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;/metrics&#34;</span><span style="color:#f92672">}</span>
-2021-12-13T15:55:09.156+0900	INFO	controller.guestbook	Starting EventSource	<span style="color:#f92672">{</span><span style="color:#e6db74">&#34;reconciler group&#34;</span>: <span style="color:#e6db74">&#34;webapp.my.domain&#34;</span>, <span style="color:#e6db74">&#34;reconciler kind&#34;</span>: <span style="color:#e6db74">&#34;Guestbook&#34;</span>, <span style="color:#e6db74">&#34;source&#34;</span>: <span style="color:#e6db74">&#34;kind source: /, Kind=&#34;</span><span style="color:#f92672">}</span>
-2021-12-13T15:55:09.157+0900	INFO	controller.guestbook	Starting Controller	<span style="color:#f92672">{</span><span style="color:#e6db74">&#34;reconciler group&#34;</span>: <span style="color:#e6db74">&#34;webapp.my.domain&#34;</span>, <span style="color:#e6db74">&#34;reconciler kind&#34;</span>: <span style="color:#e6db74">&#34;Guestbook&#34;</span><span style="color:#f92672">}</span>
-2021-12-13T15:55:09.258+0900	INFO	controller.guestbook	Starting workers	<span style="color:#f92672">{</span><span style="color:#e6db74">&#34;reconciler group&#34;</span>: <span style="color:#e6db74">&#34;webapp.my.domain&#34;</span>, <span style="color:#e6db74">&#34;reconciler kind&#34;</span>: <span style="color:#e6db74">&#34;Guestbook&#34;</span>, <span style="color:#e6db74">&#34;worker count&#34;</span>: 1<span style="color:#f92672">}</span>
+2021-12-13T15:55:09.156+0900	INFO	starting metrics server	{&quot;path&quot;: &quot;/metrics&quot;}
+2021-12-13T15:55:09.156+0900	INFO	controller.guestbook	Starting EventSource	{&quot;reconciler group&quot;: &quot;webapp.my.domain&quot;, &quot;reconciler kind&quot;: &quot;Guestbook&quot;, &quot;source&quot;: &quot;kind source: /, Kind=&quot;}
+2021-12-13T15:55:09.157+0900	INFO	controller.guestbook	Starting Controller	{&quot;reconciler group&quot;: &quot;webapp.my.domain&quot;, &quot;reconciler kind&quot;: &quot;Guestbook&quot;}
+2021-12-13T15:55:09.258+0900	INFO	controller.guestbook	Starting workers	{&quot;reconciler group&quot;: &quot;webapp.my.domain&quot;, &quot;reconciler kind&quot;: &quot;Guestbook&quot;, &quot;worker count&quot;: 1}
 Reconciling..
-</code></pre></div>
+</code></pre>
 
 
         <div class="footer">

@@ -54,11 +54,11 @@ Sep. 18, 2021
 
 <br/><br/>
 <h2 id="부제-깃헙-블로그를-깃헙-액션으로-배포하는-방법">부제: 깃헙 블로그를 깃헙 액션으로 배포하는 방법</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">개발자는 블로그를 시작했다!
+<pre><code>개발자는 블로그를 시작했다!
 효과는 미미했다..
 
 Note: 본 문서는 이미 깃헙 페이지로 블로그를 제작한 사람을 대상으로 합니다.
-</code></pre></div><p>개발자라면 기술 블로그 하나쯤 있어야 하기에 열심히 <a href="https://jamstack.org/generators/">정적 사이트 생성기</a>를 고르고 나면 배포부터 귀찮아지는 당신을 위한 Github Actions 안내서</p>
+</code></pre><p>개발자라면 기술 블로그 하나쯤 있어야 하기에 열심히 <a href="https://jamstack.org/generators/">정적 사이트 생성기</a>를 고르고 나면 배포부터 귀찮아지는 당신을 위한 Github Actions 안내서</p>
 <h3 id="github-actions">Github Actions</h3>
 <p>처음 블로그를 생성하고 배포를 여러 번 반복하다 보면 이내 자동화에 대한 욕구가 샘솟게 됩니다.</p>
 <p>물론 가장 직관적인 방법은 휴먼 오퍼레이터나 크론잡을 사용하는 것입니다.</p>
@@ -86,43 +86,43 @@ Note: 본 문서는 이미 깃헙 페이지로 블로그를 제작한 사람을 
 <li>
 <p>깃헙 이벤트를 받을 수 있나요?</p>
 <p>repository의 Actions 탭에서 샘플 액션을 생성하고 main.yml의 윗부분을 보면 다음과 같습니다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># Controls when the workflow will run</span>
-<span style="color:#f92672">on</span>:
-  <span style="color:#75715e"># Triggers the workflow on push or pull request events but only for the master branch</span>
-  <span style="color:#f92672">push</span>:
-    <span style="color:#f92672">branches</span>: [ <span style="color:#ae81ff">master ]</span>
-  <span style="color:#f92672">pull_request</span>:
-    <span style="color:#f92672">branches</span>: [ <span style="color:#ae81ff">master ]</span>
+<pre><code># Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
-  <span style="color:#75715e"># Allows you to run this workflow manually from the Actions tab</span>
-  <span style="color:#f92672">workflow_dispatch</span>:
-</code></pre></div><p>음 척 보니 push와 pull_request에 master라고 쓰여있습니다. master 브랜치에 작업을 하면 이 워크플로우(main.yml)가 동작하겠군요. 심플합니다.</p>
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+</code></pre><p>음 척 보니 push와 pull_request에 master라고 쓰여있습니다. master 브랜치에 작업을 하면 이 워크플로우(main.yml)가 동작하겠군요. 심플합니다.</p>
 </li>
 <li>
 <p>커스텀 작업(사이트 빌드)이 가능한가요?</p>
 <p>repository의 Actions 탭에서 샘플 액션을 생성하고 main.yml의 아랫부분을 보면 다음과 같습니다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># A workflow run is made up of one or more jobs that can run sequentially or in parallel</span>
-<span style="color:#f92672">jobs</span>:
-  <span style="color:#75715e"># This workflow contains a single job called &#34;build&#34;</span>
-  <span style="color:#f92672">build</span>:
-    <span style="color:#75715e"># The type of runner that the job will run on</span>
-    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+<pre><code># A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called &quot;build&quot;
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
 
-    <span style="color:#75715e"># Steps represent a sequence of tasks that will be executed as part of the job</span>
-    <span style="color:#f92672">steps</span>:
-      <span style="color:#75715e"># Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it</span>
-      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v2</span>
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
 
-      <span style="color:#75715e"># Runs a single command using the runners shell</span>
-      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Run a one-line script</span>
-        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">echo Hello, world!</span>
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
 
-      <span style="color:#75715e"># Runs a set of commands using the runners shell</span>
-      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Run a multi-line script</span>
-        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
-</span><span style="color:#e6db74">          echo Add other actions to build,
-</span><span style="color:#e6db74">          echo test, and deploy your project.</span>          
-</code></pre></div><p>runs-on에서 ubuntu-latest 지정하고, steps에서 repo를 checkout(actions/checkout@v2)하고 명령(run)들을 넣으면 동작하는군!</p>
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+</code></pre><p>runs-on에서 ubuntu-latest 지정하고, steps에서 repo를 checkout(actions/checkout@v2)하고 명령(run)들을 넣으면 동작하는군!</p>
 <p>여기서 보이는 바와 같이 사용자는 두 가지 방법으로 원하는 동작을 수행 시킬 수 있습니다.</p>
 <ol>
 <li>
@@ -139,58 +139,58 @@ Note: 본 문서는 이미 깃헙 페이지로 블로그를 제작한 사람을 
 </ol>
 <h3 id="hugo-site-cicd-with-github-actions">Hugo Site CI/CD with Github Actions</h3>
 <p>아래 코드는 A repo(action이 설정된 hugo repo)에서 B repo(Github Pages repo)로 Hugo Site를 커밋하는 예제 코드입니다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Hugo site CI/CD</span>
+<pre><code>name: Hugo site CI/CD
 
-<span style="color:#75715e"># Controls when the workflow will run</span>
-<span style="color:#f92672">on</span>:
-  <span style="color:#75715e"># Triggers the workflow on push or pull request events but only for the master branch</span>
-  <span style="color:#f92672">push</span>:
-    <span style="color:#f92672">branches</span>: [ <span style="color:#ae81ff">master ]</span>
-  <span style="color:#f92672">pull_request</span>:
-    <span style="color:#f92672">branches</span>: [ <span style="color:#ae81ff">master ]</span>
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
-  <span style="color:#75715e"># Allows you to run this workflow manually from the Actions tab</span>
-  <span style="color:#f92672">workflow_dispatch</span>:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
-<span style="color:#75715e"># A workflow run is made up of one or more jobs that can run sequentially or in parallel</span>
-<span style="color:#f92672">jobs</span>:
-  <span style="color:#75715e"># This workflow contains a single job called &#34;build-and-deploy&#34;</span>
-  <span style="color:#f92672">build-and-deploy</span>:
-    <span style="color:#75715e"># The type of runner that the job will run on</span>
-    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called &quot;build-and-deploy&quot;
+  build-and-deploy:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
 
-    <span style="color:#75715e"># Steps represent a sequence of tasks that will be executed as part of the job</span>
-    <span style="color:#f92672">steps</span>:
-      <span style="color:#75715e"># Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it</span>
-      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v2</span>
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
 
-      <span style="color:#75715e"># Runs a set of commands using the runners shell</span>
-      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Build the site in the hugo container</span>
-        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
-</span><span style="color:#e6db74">          git submodule init ${{ github.workspace }}
-</span><span style="color:#e6db74">          git submodule update ${{ github.workspace }}
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">          docker run \
-</span><span style="color:#e6db74">          -v ${{ github.workspace }}:/src -v ${{ github.workspace }}/_site:/src/public \
-</span><span style="color:#e6db74">          klakegg/hugo:0.81.0-busybox
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">          sudo chmod -R 777 ${{ github.workspace }}/_site</span>          
+      # Runs a set of commands using the runners shell
+      - name: Build the site in the hugo container
+        run: |
+          git submodule init ${{ github.workspace }}
+          git submodule update ${{ github.workspace }}
 
-      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Deploy the site to the target repo</span>
-        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
-</span><span style="color:#e6db74">          git clone https://github.com/jiwonaid/jiwonaid.github.io.git
-</span><span style="color:#e6db74">          cp -r jiwonaid.github.io/.git ${{ github.workspace }}/_site
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">          cd ${{ github.workspace }}/_site
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">          git config --global user.email &#34;jiwonaid0@gmail.com&#34;
-</span><span style="color:#e6db74">          git config --global user.name &#34;jiwonaid&#34;
-</span><span style="color:#e6db74">          git remote set-url origin https://jiwonaid:${TOKEN}@github.com/jiwonaid/jiwonaid.github.io.git
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">          git add .
-</span><span style="color:#e6db74">          git commit -m &#34;$(date +%s)&#34;
-</span><span style="color:#e6db74">          git push origin</span>          
-</code></pre></div>
+          docker run \
+          -v ${{ github.workspace }}:/src -v ${{ github.workspace }}/_site:/src/public \
+          klakegg/hugo:0.81.0-busybox
+
+          sudo chmod -R 777 ${{ github.workspace }}/_site
+
+      - name: Deploy the site to the target repo
+        run: |
+          git clone https://github.com/jiwonaid/jiwonaid.github.io.git
+          cp -r jiwonaid.github.io/.git ${{ github.workspace }}/_site
+
+          cd ${{ github.workspace }}/_site
+
+          git config --global user.email &quot;jiwonaid0@gmail.com&quot;
+          git config --global user.name &quot;jiwonaid&quot;
+          git remote set-url origin https://jiwonaid:${TOKEN}@github.com/jiwonaid/jiwonaid.github.io.git
+
+          git add .
+          git commit -m &quot;$(date +%s)&quot;
+          git push origin
+</code></pre>
 
 
         <div class="footer">

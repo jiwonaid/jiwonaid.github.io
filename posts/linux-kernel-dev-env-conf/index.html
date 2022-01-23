@@ -51,34 +51,34 @@ Sep. 2, 2021
 
 <br/><br/>
 <h2 id="host">Host</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo apt install snapd
+<pre><code>sudo apt install snapd
 
-<span style="color:#75715e"># https://multipass.run/docs/installing-on-linux</span>
+# https://multipass.run/docs/installing-on-linux
 sudo snap install multipass
 
-<span style="color:#75715e"># https://multipass.run/docs/using-libvirt</span>
+# https://multipass.run/docs/using-libvirt
 sudo apt install libvirt-daemon-system
 
 sudo snap connect multipass:libvirt
 
 sudo multipass stop --all
 
-sudo multipass set local.driver<span style="color:#f92672">=</span>libvirt
+sudo multipass set local.driver=libvirt
 
-<span style="color:#75715e"># https://multipass.run/docs/launch-command</span>
-sudo multipass launch -c <span style="color:#ae81ff">12</span> -d 128G -m 32G -n mp
+# https://multipass.run/docs/launch-command
+sudo multipass launch -c 12 -d 128G -m 32G -n mp
 
-<span style="color:#75715e"># Check libvirt</span>
+# Check libvirt
 virsh console mp
-</code></pre></div><h2 id="guest">Guest</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">vi /etc/default/grub
+</code></pre><h2 id="guest">Guest</h2>
+<pre><code>vi /etc/default/grub
 
-GRUB_DEFAULT<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>
-GRUB_TIMEOUT_STYLE<span style="color:#f92672">=</span>menu
-GRUB_TIMEOUT<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>
+GRUB_DEFAULT=3
+GRUB_TIMEOUT_STYLE=menu
+GRUB_TIMEOUT=3
 
 update-grub2
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># https://kernelnewbies.org/KernelBuild</span>
+</code></pre><pre><code># https://kernelnewbies.org/KernelBuild
 
 apt-get install libncurses5-dev gcc make git exuberant-ctags bc libssl-dev flex bison libelf-dev
 
@@ -86,18 +86,18 @@ git clone https://kernel.googlesource.com/pub/scm/linux/kernel/git/netdev/net-ne
 
 cd net-next
 
-cp /boot/config-<span style="color:#e6db74">`</span>uname -r<span style="color:#e6db74">`</span>* .config
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make menuconfig
+cp /boot/config-`uname -r`* .config
+</code></pre><pre><code>make menuconfig
 
-<span style="color:#75715e"># TUI(text-based user interfaces)</span>
+# TUI(text-based user interfaces)
 - Networking support
     Networking options: enable all
 
 - Kernel hacking
     printk and dmesg options: enable all
     Memory Debugging: enable KASAN
-    Lock Debugging: enable Lock debugging, disable torture tests <span style="color:#66d9ef">for</span> locking
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">make -j<span style="color:#66d9ef">$(</span>nproc<span style="color:#66d9ef">)</span>
+    Lock Debugging: enable Lock debugging, disable torture tests for locking
+</code></pre><pre><code>make -j$(nproc)
 
 make modules
 
@@ -106,38 +106,38 @@ make modules_install install
 update-grub2
 
 reboot
-</code></pre></div><h2 id="net">net/</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
-<span style="color:#75715e"># Do patch</span>
-<span style="color:#75715e"># vi ${FILE}</span>
+</code></pre><h2 id="net">net/</h2>
+<pre><code>
+# Do patch
+# vi ${FILE}
 
-./scripts/checkpatch.pl <span style="color:#e6db74">${</span>FILE<span style="color:#e6db74">}</span>
+./scripts/checkpatch.pl ${FILE}
 
-<span style="color:#75715e"># git commit</span>
-ipv6: change <span style="color:#66d9ef">return</span> type from int to void <span style="color:#66d9ef">for</span> mld_process_v2
+# git commit
+ipv6: change return type from int to void for mld_process_v2
 
 The mld_process_v2 only returned 0.
 
-So, the <span style="color:#66d9ef">return</span> type is changed to void.
+So, the return type is changed to void.
 
-Signed-off-by: First Last &lt;<span style="color:#e6db74">${</span>EMAIL<span style="color:#e6db74">}</span>@gmail.com&gt;
+Signed-off-by: First Last &lt;${EMAIL}@gmail.com&gt;
 
-<span style="color:#75715e"># git format-patch</span>
-git format-patch -o patches/ --subject-prefix<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;PATCH net-next&#34;</span> <span style="color:#e6db74">${</span>SHA<span style="color:#e6db74">}</span>^
+# git format-patch
+git format-patch -o patches/ --subject-prefix=&quot;PATCH net-next&quot; ${SHA}^
 
-<span style="color:#75715e"># Check patch</span>
-./scripts/checkpatch.pl patches/<span style="color:#e6db74">${</span>PATCH<span style="color:#e6db74">}</span>
+# Check patch
+./scripts/checkpatch.pl patches/${PATCH}
 
-<span style="color:#75715e"># git config</span>
-git config --global sendemail.smtpuser <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>EMAIL<span style="color:#e6db74">}</span><span style="color:#e6db74">@gmail.com&#34;</span>
+# git config
+git config --global sendemail.smtpuser &quot;${EMAIL}@gmail.com&quot;
 git config --global sendemail.smtpserver smtp.gmail.com
-git config --global sendemail.smtpserverport <span style="color:#ae81ff">465</span>
+git config --global sendemail.smtpserverport 465
 git config --global sendemail.smtpencryption ssl
 
-./scripts/get_maintainer.pl patches/<span style="color:#e6db74">${</span>PATCH<span style="color:#e6db74">}</span>
+./scripts/get_maintainer.pl patches/${PATCH}
 
-git send-email --from<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span> --to<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span> --cc<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span> patches/<span style="color:#e6db74">${</span>PATCH<span style="color:#e6db74">}</span>
-</code></pre></div><h2 id="results">Results</h2>
+git send-email --from=&quot;&quot; --to=&quot;&quot; --cc=&quot;&quot; patches/${PATCH}
+</code></pre><h2 id="results">Results</h2>
 <p><a href="https://patchwork.kernel.org/project/netdevbpf/patch/20210901153449.26067-1-jiwonaid0@gmail.com/">https://patchwork.kernel.org/project/netdevbpf/patch/20210901153449.26067-1-jiwonaid0@gmail.com/</a></p>
 <p><a href="https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git/commit/?id=3f22bb137eb03ab27eaaa8b40d3e072eb541444e">https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git/commit/?id=3f22bb137eb03ab27eaaa8b40d3e072eb541444e</a></p>
 

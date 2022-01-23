@@ -50,70 +50,70 @@ Oct. 9, 2021
 
 
 <br/><br/>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">Note: 본 문서는 &#39;리눅스 커널 이야기 - 강진우 저&#39;와 몇몇 링크들을 참고한 cheat sheet로, 커널의 동작 방식이나 파라미터에 대한 보다 자세한 내용은 책에서 찾아보실 수 있습니다.
-</code></pre></div><h2 id="1장-시스템-구성-정보-확인하기">1장 시스템 구성 정보 확인하기</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">uname -a
-<span style="color:#75715e"># 커널 정보 출력</span>
+<pre><code>Note: 본 문서는 '리눅스 커널 이야기 - 강진우 저'와 몇몇 링크들을 참고한 cheat sheet로, 커널의 동작 방식이나 파라미터에 대한 보다 자세한 내용은 책에서 찾아보실 수 있습니다.
+</code></pre><h2 id="1장-시스템-구성-정보-확인하기">1장 시스템 구성 정보 확인하기</h2>
+<pre><code>uname -a
+# 커널 정보 출력
 
 dmesg
-<span style="color:#75715e"># 커널 ring buffer 메세지 출력</span>
+# 커널 ring buffer 메세지 출력
 
 dmidecode -t
-<span style="color:#75715e"># 하드웨어 정보 출력</span>
+# 하드웨어 정보 출력
 
 lscpu
 cat /proc/cpuinfo
-<span style="color:#75715e"># cpu 정보 출력</span>
+# cpu 정보 출력
 
 free -m
-<span style="color:#75715e"># 메모리 정보 출력</span>
+# 메모리 정보 출력
 
 df -h
-<span style="color:#75715e"># 디스크 정보 출력</span>
+# 디스크 정보 출력
 
 ethtool eth0
-<span style="color:#75715e"># 네트워크 카드 정보 출력</span>
-</code></pre></div><h2 id="2장-top을-통해-살펴보는-프로세스-정보들">2장 top을 통해 살펴보는 프로세스 정보들</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pstree -a
+# 네트워크 카드 정보 출력
+</code></pre><h2 id="2장-top을-통해-살펴보는-프로세스-정보들">2장 top을 통해 살펴보는 프로세스 정보들</h2>
+<pre><code>pstree -a
 ps aux
 top
-<span style="color:#75715e"># 프로세스 정보 출력</span>
-</code></pre></div><h2 id="3장-load-average와-시스템-부하">3장 Load Average와 시스템 부하</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">uptime
+# 프로세스 정보 출력
+</code></pre><h2 id="3장-load-average와-시스템-부하">3장 Load Average와 시스템 부하</h2>
+<pre><code>uptime
 cat /proc/loadavg
 
 vmstat
 cat /proc/sched_debug
-<span style="color:#75715e"># 가상 메모리 정보 출력</span>
-</code></pre></div><h2 id="4장-free-명령이-숨기고-있는-것들">4장 free 명령이 숨기고 있는 것들</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">free -m
+# 가상 메모리 정보 출력
+</code></pre><h2 id="4장-free-명령이-숨기고-있는-것들">4장 free 명령이 숨기고 있는 것들</h2>
+<pre><code>free -m
 cat /proc/meminfo
-</code></pre></div><h2 id="5장-swap-메모리-증설의-포인트">5장 swap, 메모리 증설의 포인트</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">free -m
+</code></pre><h2 id="5장-swap-메모리-증설의-포인트">5장 swap, 메모리 증설의 포인트</h2>
+<pre><code>free -m
 smem -t
-</code></pre></div><h2 id="6장-numa-메모리-관리의-새로운-세계">6장 NUMA, 메모리 관리의 새로운 세계</h2>
+</code></pre><h2 id="6장-numa-메모리-관리의-새로운-세계">6장 NUMA, 메모리 관리의 새로운 세계</h2>
 <h2 id="7장-time_wait-소켓이-서비스에-미치는-영향">7장 TIME_WAIT 소켓이 서비스에 미치는 영향</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">netstat -napo
-<span style="color:#75715e"># 네트워크 정보 출력</span>
-</code></pre></div><h2 id="8장-tcp-keepalive를-이용한-세션-유지">8장 TCP Keepalive를 이용한 세션 유지</h2>
+<pre><code>netstat -napo
+# 네트워크 정보 출력
+</code></pre><h2 id="8장-tcp-keepalive를-이용한-세션-유지">8장 TCP Keepalive를 이용한 세션 유지</h2>
 <h2 id="9장-tcp-재전송과-타임아웃">9장 TCP 재전송과 타임아웃</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ss -i
-<span style="color:#75715e"># 소켓 정보 출력</span>
-</code></pre></div><h2 id="10장-dirty-page가-io에-끼치는-영향">10장 dirty page가 I/O에 끼치는 영향</h2>
+<pre><code>ss -i
+# 소켓 정보 출력
+</code></pre><h2 id="10장-dirty-page가-io에-끼치는-영향">10장 dirty page가 I/O에 끼치는 영향</h2>
 <h2 id="11장-io-작업이-지나가는-관문-io-스케줄러">11장 I/O 작업이 지나가는 관문, I/O 스케줄러</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">iostat
+<pre><code>iostat
 iotop -P
-<span style="color:#75715e"># I/O 사용량 정보 출력</span>
-</code></pre></div><h2 id="12장-애플리케이션-성능-측정과-튜닝">12장 애플리케이션 성능 측정과 튜닝</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown"><span style="color:#66d9ef">-</span> 애플리케이션 워커 수를 cpu 코어 수 이상으로 설정
+# I/O 사용량 정보 출력
+</code></pre><h2 id="12장-애플리케이션-성능-측정과-튜닝">12장 애플리케이션 성능 측정과 튜닝</h2>
+<pre><code>- 애플리케이션 워커 수를 cpu 코어 수 이상으로 설정
 
-<span style="color:#66d9ef">-</span> 커넥션 풀 방식과 keepalive 옵션 등을 이용해서 TCP TIME_WAIT 소켓을 줄임
-</code></pre></div><h3 id="appendix-a-커널-디버깅을-위한-커널-컴파일">Appendix A 커널 디버깅을 위한 커널 컴파일</h3>
+- 커넥션 풀 방식과 keepalive 옵션 등을 이용해서 TCP TIME_WAIT 소켓을 줄임
+</code></pre><h3 id="appendix-a-커널-디버깅을-위한-커널-컴파일">Appendix A 커널 디버깅을 위한 커널 컴파일</h3>
 <h3 id="appendix-b-strace를-통한-애플리케이션-분석">Appendix B strace를 통한 애플리케이션 분석</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">strace -s <span style="color:#ae81ff">65535</span> -f -T -tt <span style="color:#75715e"># -p &lt;pid&gt;</span>
-</code></pre></div><h3 id="appendix-c-tcpdump와-와이어샤크를-통한-tcp-패킷-분석">Appendix C tcpdump와 와이어샤크를 통한 TCP 패킷 분석</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tcpdump -vvv -nn -A host &lt;IP&gt; and port &lt;port&gt;
-</code></pre></div><h2 id="reference">Reference</h2>
+<pre><code>strace -s 65535 -f -T -tt # -p &lt;pid&gt;
+</code></pre><h3 id="appendix-c-tcpdump와-와이어샤크를-통한-tcp-패킷-분석">Appendix C tcpdump와 와이어샤크를 통한 TCP 패킷 분석</h3>
+<pre><code>tcpdump -vvv -nn -A host &lt;IP&gt; and port &lt;port&gt;
+</code></pre><h2 id="reference">Reference</h2>
 <p><a href="http://devo.ps/blog/troubleshooting-5minutes-on-a-yet-unknown-box/">http://devo.ps/blog/troubleshooting-5minutes-on-a-yet-unknown-box/</a></p>
 
 

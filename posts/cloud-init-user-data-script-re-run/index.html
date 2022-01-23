@@ -74,55 +74,55 @@ Aug. 5, 2021
 <li>Final</li>
 </ol>
 <p>중 5번의 cloud-final.service에서 동작을 하는 구조이다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">deploy@vm-instance:~$ systemctl cat cloud-init.target
-<span style="color:#75715e"># /lib/systemd/system/cloud-init.target</span>
-<span style="color:#75715e"># cloud-init target is enabled by cloud-init-generator</span>
-<span style="color:#75715e"># To disable it you can either:</span>
-<span style="color:#75715e">#  a.) boot with kernel cmdline of &#39;cloud-init=disabled&#39;</span>
-<span style="color:#75715e">#  b.) touch a file /etc/cloud/cloud-init.disabled</span>
-<span style="color:#f92672">[</span>Unit<span style="color:#f92672">]</span>
-Description<span style="color:#f92672">=</span>Cloud-init target
-After<span style="color:#f92672">=</span>multi-user.target
+<pre><code>deploy@vm-instance:~$ systemctl cat cloud-init.target
+# /lib/systemd/system/cloud-init.target
+# cloud-init target is enabled by cloud-init-generator
+# To disable it you can either:
+#  a.) boot with kernel cmdline of 'cloud-init=disabled'
+#  b.) touch a file /etc/cloud/cloud-init.disabled
+[Unit]
+Description=Cloud-init target
+After=multi-user.target
 
-<span style="color:#75715e"># multi-user.target의 run level은 2 3 4로 cloud-init은다른 서비스들이 뜨고 나서 작동하며</span>
-<span style="color:#75715e"># 스크립트에서는 runlevel 명령어에서 N 5가 출력된다.</span>
-</code></pre></div><p>ref:</p>
+# multi-user.target의 run level은 2 3 4로 cloud-init은다른 서비스들이 뜨고 나서 작동하며
+# 스크립트에서는 runlevel 명령어에서 N 5가 출력된다.
+</code></pre><p>ref:</p>
 <p><a href="https://docs.openstack.org/nova/ussuri/user/metadata.html#user-data">https://docs.openstack.org/nova/ussuri/user/metadata.html#user-data</a></p>
 <p><a href="https://cloudinit.readthedocs.io/en/latest/topics/boot.html#final">https://cloudinit.readthedocs.io/en/latest/topics/boot.html#final</a></p>
 <p>따라서 아래와 같은 스크립트를 실행할 수 있다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
-</span><span style="color:#75715e"></span>apt update
+<pre><code>#!/bin/bash
+apt update
 apt -y install apache2
-cat <span style="color:#e6db74">&lt;&lt;EOF &gt; /var/www/html/index.html
-</span><span style="color:#e6db74">&lt;html&gt;&lt;body&gt;&lt;h1&gt;Hello World&lt;/h1&gt;
-</span><span style="color:#e6db74">&lt;p&gt;This page was created from a startup script.&lt;/p&gt;
-</span><span style="color:#e6db74">&lt;p&gt;&#34;$(date +%s)&#34;&lt;/p&gt;
-</span><span style="color:#e6db74">&lt;/body&gt;&lt;/html&gt;
-</span><span style="color:#e6db74">EOF</span>
-</code></pre></div><ul>
+cat &lt;&lt;EOF &gt; /var/www/html/index.html
+&lt;html&gt;&lt;body&gt;&lt;h1&gt;Hello World&lt;/h1&gt;
+&lt;p&gt;This page was created from a startup script.&lt;/p&gt;
+&lt;p&gt;&quot;$(date +%s)&quot;&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+EOF
+</code></pre><ul>
 <li>
 <p>스크립트 실행 로그 확인</p>
 <p>오픈스택의 경우 cloud-init의 로그를 관찰해야 한다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat /var/log/syslog
+<pre><code>cat /var/log/syslog
 
 sudo journalctl -u cloud-final.service
-</code></pre></div></li>
+</code></pre></li>
 <li>
 <p>스크립트 재실행</p>
 <p>cloud-init을 활용하면 실행 중인 인스턴스에서 스크립트 재실행이 가능하다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cloud-init clean
+<pre><code>cloud-init clean
 cloud-init init
 
-<span style="color:#75715e"># cloud-final.service에서 user_data의 스크립트가 동작한다.</span>
+# cloud-final.service에서 user_data의 스크립트가 동작한다.
 cloud-init modules --mode final
-</code></pre></div></li>
+</code></pre></li>
 <li>
 <p>re-run datasource detection and cloud-init</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo DI_LOG<span style="color:#f92672">=</span>stderr /usr/lib/cloud-init/ds-identify --force
+<pre><code>sudo DI_LOG=stderr /usr/lib/cloud-init/ds-identify --force
 sudo cloud-init clean --logs
 sudo cloud-init init --local
 sudo cloud-init init
-</code></pre></div></li>
+</code></pre></li>
 </ul>
 
 

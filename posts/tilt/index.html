@@ -88,8 +88,8 @@ Dec. 7, 2021
 </li>
 </ol>
 <p>을 반복하는 것인데 조금 더 편하게 배포할 수는 없을까요?</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tilt up <span style="color:#75715e"># Tilt Control Loop가 개발 환경을 갱신하게 하는 명령어</span>
-</code></pre></div><p>을 사용하면</p>
+<pre><code>tilt up # Tilt Control Loop가 개발 환경을 갱신하게 하는 명령어
+</code></pre><p>을 사용하면</p>
 <ul>
 <li>
 <p>docker 빌드 캐싱</p>
@@ -108,36 +108,36 @@ Dec. 7, 2021
 <img src="https://miro.medium.com/max/1400/1*2HUWuW8PNzzDZzwaeYP_pg.png" alt="2"></p>
 <h2 id="using-k8s-with-tilt">Using k8s with Tilt</h2>
 <p>k8s와 tilt를 함께 사용하려면 kubernetes 클러스터를 본인의 노트북 로컬에서 바로 접근할 수 있어야 합니다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># 노트북 로컬</span>
+<pre><code># 노트북 로컬
 
-cat <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>클러스터IP<span style="color:#e6db74">}</span><span style="color:#e6db74"> kubernetes&#34;</span> | sudo tee -a /etc/hosts
+cat &quot;${클러스터IP} kubernetes&quot; | sudo tee -a /etc/hosts
 
-cat <span style="color:#e6db74">&lt;&lt; EOD &gt; kubeconfig
-</span><span style="color:#e6db74">apiVersion: v1
-</span><span style="color:#e6db74">clusters:
-</span><span style="color:#e6db74">- cluster:
-</span><span style="color:#e6db74">    certificate-authority-data: ${CAD}
-</span><span style="color:#e6db74">    server: https://kubernetes:6443
-</span><span style="color:#e6db74">  name: dev
-</span><span style="color:#e6db74">contexts:
-</span><span style="color:#e6db74">- context:
-</span><span style="color:#e6db74">    cluster: dev
-</span><span style="color:#e6db74">    user: kubernetes-admin-dev
-</span><span style="color:#e6db74">  name: kubernetes-admin-dev@dev
-</span><span style="color:#e6db74">current-context: kubernetes-admin-dev@dev
-</span><span style="color:#e6db74">kind: Config
-</span><span style="color:#e6db74">preferences: {}
-</span><span style="color:#e6db74">users:
-</span><span style="color:#e6db74">- name: kubernetes-admin-dev
-</span><span style="color:#e6db74">  user:
-</span><span style="color:#e6db74">    client-certificate-data: ${CCD}
-</span><span style="color:#e6db74">    client-key-data: ${CKD}
-</span><span style="color:#e6db74">EOD</span>
-</code></pre></div><p>그리고 tilt를 설치합니다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brew install tilt
-</code></pre></div><p>이제 아래와 같이 사용하실 수 있습니다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kubectl --kubeconfig<span style="color:#f92672">=</span>./kubeconfig get ns
-</code></pre></div><h2 id="using-helm-with-tilt">Using Helm with Tilt</h2>
+cat &lt;&lt; EOD &gt; kubeconfig
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: ${CAD}
+    server: https://kubernetes:6443
+  name: dev
+contexts:
+- context:
+    cluster: dev
+    user: kubernetes-admin-dev
+  name: kubernetes-admin-dev@dev
+current-context: kubernetes-admin-dev@dev
+kind: Config
+preferences: {}
+users:
+- name: kubernetes-admin-dev
+  user:
+    client-certificate-data: ${CCD}
+    client-key-data: ${CKD}
+EOD
+</code></pre><p>그리고 tilt를 설치합니다.</p>
+<pre><code>brew install tilt
+</code></pre><p>이제 아래와 같이 사용하실 수 있습니다.</p>
+<pre><code>kubectl --kubeconfig=./kubeconfig get ns
+</code></pre><h2 id="using-helm-with-tilt">Using Helm with Tilt</h2>
 <p>이제 Tiltfile을 작성해 봅시다. 그런데 Tiltfile이란 무엇인가요?</p>
 <blockquote>
 <p>Summary</p>
@@ -158,25 +158,25 @@ cat <span style="color:#e6db74">&lt;&lt; EOD &gt; kubeconfig
 </ul>
 </blockquote>
 <p>따라서 아래와 같이 Tiltfile을 작성합니다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cat <span style="color:#e6db74">&lt;&lt; EOD &gt; Tiltfile
-</span><span style="color:#e6db74">allow_k8s_contexts(&#39;kubernetes-admin-dev@dev&#39;)
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">yaml = helm(
-</span><span style="color:#e6db74">  &#39;path/to/chart/dir&#39;,
-</span><span style="color:#e6db74">  # The release name, equivalent to helm --name
-</span><span style="color:#e6db74">  name=&#39;release-name&#39;,
-</span><span style="color:#e6db74">  # The namespace to install in, equivalent to helm --namespace
-</span><span style="color:#e6db74">  namespace=&#39;my-namespace&#39;,
-</span><span style="color:#e6db74">  # The values file to substitute into the chart.
-</span><span style="color:#e6db74">  values=[&#39;./path/to/chart/dir/values-dev.yaml&#39;],
-</span><span style="color:#e6db74">  # Values to set from the command-line
-</span><span style="color:#e6db74">  set=[&#39;service.port=1234&#39;, &#39;ingress.enabled=true&#39;]
-</span><span style="color:#e6db74">  )
-</span><span style="color:#e6db74">k8s_yaml(yaml)
-</span><span style="color:#e6db74">EOD</span>
-</code></pre></div><p>아래 명령어로 결과를 확인할 수 있습니다.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tilt up
-</code></pre></div><h2 id="참고">참고</h2>
+<pre><code>cat &lt;&lt; EOD &gt; Tiltfile
+allow_k8s_contexts('kubernetes-admin-dev@dev')
+
+yaml = helm(
+  'path/to/chart/dir',
+  # The release name, equivalent to helm --name
+  name='release-name',
+  # The namespace to install in, equivalent to helm --namespace
+  namespace='my-namespace',
+  # The values file to substitute into the chart.
+  values=['./path/to/chart/dir/values-dev.yaml'],
+  # Values to set from the command-line
+  set=['service.port=1234', 'ingress.enabled=true']
+  )
+k8s_yaml(yaml)
+EOD
+</code></pre><p>아래 명령어로 결과를 확인할 수 있습니다.</p>
+<pre><code>tilt up
+</code></pre><h2 id="참고">참고</h2>
 <ul>
 <li>
 <p><a href="https://medium.com/windmill-engineering/how-tilt-updates-kubernetes-in-seconds-not-minutes-28ddffe2d79f">https://medium.com/windmill-engineering/how-tilt-updates-kubernetes-in-seconds-not-minutes-28ddffe2d79f</a></p>

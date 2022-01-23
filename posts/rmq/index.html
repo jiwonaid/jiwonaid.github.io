@@ -29,7 +29,7 @@
 Introduction Producer: A program that sends messages.
 Broker(Exchange&#43;Binding&#43;Queue): A queue is essentially a large message buffer and bound by the host&rsquo;s memory &amp; disk limits.
 Consumer: A program that mostly waits to receive messages.
-Installation brew install rabbitmq go get github.com/streadway/amqp Sending(Producer) // https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/go/send.go package main import ( &#34;log&#34; &#34;github.com/streadway/amqp&#34; ) func failOnError(err error, msg string) { if err != nil { log.Panicf(&#34;%s: %s&#34;, msg, err) } } func main() { conn, err := amqp."/>
+Installation brew install rabbitmq go get github.com/streadway/amqp Sending(Producer) // https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/go/send.go package main import ( &quot;log&quot; &quot;github.com/streadway/amqp&quot; ) func failOnError(err error, msg string) { if err != nil { log.Panicf(&quot;%s: %s&quot;, msg, err) } } func main() { conn, err := amqp."/>
 
 </head>
 <body class="terminal">
@@ -65,122 +65,122 @@ Jan. 3, 2022
 
 go get github.com/streadway/amqp
 </code></pre><h2 id="sendingproducer">Sending(Producer)</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/go/send.go
-</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+<pre><code>// https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/go/send.go
+package main
 
-<span style="color:#f92672">import</span> (
-	<span style="color:#e6db74">&#34;log&#34;</span>
+import (
+	&quot;log&quot;
 
-	<span style="color:#e6db74">&#34;github.com/streadway/amqp&#34;</span>
+	&quot;github.com/streadway/amqp&quot;
 )
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">failOnError</span>(<span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>, <span style="color:#a6e22e">msg</span> <span style="color:#66d9ef">string</span>) {
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Panicf</span>(<span style="color:#e6db74">&#34;%s: %s&#34;</span>, <span style="color:#a6e22e">msg</span>, <span style="color:#a6e22e">err</span>)
+func failOnError(err error, msg string) {
+	if err != nil {
+		log.Panicf(&quot;%s: %s&quot;, msg, err)
 	}
 }
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-	<span style="color:#a6e22e">conn</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">amqp</span>.<span style="color:#a6e22e">Dial</span>(<span style="color:#e6db74">&#34;amqp://guest:guest@localhost:5672/&#34;</span>)
-	<span style="color:#a6e22e">failOnError</span>(<span style="color:#a6e22e">err</span>, <span style="color:#e6db74">&#34;Failed to connect to RabbitMQ&#34;</span>)
-	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">conn</span>.<span style="color:#a6e22e">Close</span>()
+func main() {
+	conn, err := amqp.Dial(&quot;amqp://guest:guest@localhost:5672/&quot;)
+	failOnError(err, &quot;Failed to connect to RabbitMQ&quot;)
+	defer conn.Close()
 
-	<span style="color:#a6e22e">ch</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">conn</span>.<span style="color:#a6e22e">Channel</span>()
-	<span style="color:#a6e22e">failOnError</span>(<span style="color:#a6e22e">err</span>, <span style="color:#e6db74">&#34;Failed to open a channel&#34;</span>)
-	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">ch</span>.<span style="color:#a6e22e">Close</span>()
+	ch, err := conn.Channel()
+	failOnError(err, &quot;Failed to open a channel&quot;)
+	defer ch.Close()
 
-	<span style="color:#a6e22e">q</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ch</span>.<span style="color:#a6e22e">QueueDeclare</span>(
-		<span style="color:#e6db74">&#34;hello&#34;</span>, <span style="color:#75715e">// name
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">false</span>,   <span style="color:#75715e">// durable
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">false</span>,   <span style="color:#75715e">// delete when unused
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">false</span>,   <span style="color:#75715e">// exclusive
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">false</span>,   <span style="color:#75715e">// no-wait
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">nil</span>,     <span style="color:#75715e">// arguments
-</span><span style="color:#75715e"></span>	)
-	<span style="color:#a6e22e">failOnError</span>(<span style="color:#a6e22e">err</span>, <span style="color:#e6db74">&#34;Failed to declare a queue&#34;</span>)
+	q, err := ch.QueueDeclare(
+		&quot;hello&quot;, // name
+		false,   // durable
+		false,   // delete when unused
+		false,   // exclusive
+		false,   // no-wait
+		nil,     // arguments
+	)
+	failOnError(err, &quot;Failed to declare a queue&quot;)
 
-	<span style="color:#a6e22e">body</span> <span style="color:#f92672">:=</span> <span style="color:#e6db74">&#34;Hello World!&#34;</span>
-	<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">ch</span>.<span style="color:#a6e22e">Publish</span>(
-		<span style="color:#e6db74">&#34;&#34;</span>,     <span style="color:#75715e">// exchange
-</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">q</span>.<span style="color:#a6e22e">Name</span>, <span style="color:#75715e">// routing key
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">false</span>,  <span style="color:#75715e">// mandatory
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">false</span>,  <span style="color:#75715e">// immediate
-</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">amqp</span>.<span style="color:#a6e22e">Publishing</span>{
-			<span style="color:#a6e22e">ContentType</span>: <span style="color:#e6db74">&#34;text/plain&#34;</span>,
-			<span style="color:#a6e22e">Body</span>:        []byte(<span style="color:#a6e22e">body</span>),
+	body := &quot;Hello World!&quot;
+	err = ch.Publish(
+		&quot;&quot;,     // exchange
+		q.Name, // routing key
+		false,  // mandatory
+		false,  // immediate
+		amqp.Publishing{
+			ContentType: &quot;text/plain&quot;,
+			Body:        []byte(body),
 		})
-	<span style="color:#a6e22e">failOnError</span>(<span style="color:#a6e22e">err</span>, <span style="color:#e6db74">&#34;Failed to publish a message&#34;</span>)
-	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34; [x] Sent %s\n&#34;</span>, <span style="color:#a6e22e">body</span>)
+	failOnError(err, &quot;Failed to publish a message&quot;)
+	log.Printf(&quot; [x] Sent %s\n&quot;, body)
 }
-</code></pre></div><h2 id="receivingconsumer">Receiving(Consumer)</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/go/receive.go
-</span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</code></pre><h2 id="receivingconsumer">Receiving(Consumer)</h2>
+<pre><code>// https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/go/receive.go
+package main
 
-<span style="color:#f92672">import</span> (
-	<span style="color:#e6db74">&#34;log&#34;</span>
+import (
+	&quot;log&quot;
 
-	<span style="color:#e6db74">&#34;github.com/streadway/amqp&#34;</span>
+	&quot;github.com/streadway/amqp&quot;
 )
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">failOnError</span>(<span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>, <span style="color:#a6e22e">msg</span> <span style="color:#66d9ef">string</span>) {
-	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-		<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Panicf</span>(<span style="color:#e6db74">&#34;%s: %s&#34;</span>, <span style="color:#a6e22e">msg</span>, <span style="color:#a6e22e">err</span>)
+func failOnError(err error, msg string) {
+	if err != nil {
+		log.Panicf(&quot;%s: %s&quot;, msg, err)
 	}
 }
 
-<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-	<span style="color:#a6e22e">conn</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">amqp</span>.<span style="color:#a6e22e">Dial</span>(<span style="color:#e6db74">&#34;amqp://guest:guest@localhost:5672/&#34;</span>)
-	<span style="color:#a6e22e">failOnError</span>(<span style="color:#a6e22e">err</span>, <span style="color:#e6db74">&#34;Failed to connect to RabbitMQ&#34;</span>)
-	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">conn</span>.<span style="color:#a6e22e">Close</span>()
+func main() {
+	conn, err := amqp.Dial(&quot;amqp://guest:guest@localhost:5672/&quot;)
+	failOnError(err, &quot;Failed to connect to RabbitMQ&quot;)
+	defer conn.Close()
 
-	<span style="color:#a6e22e">ch</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">conn</span>.<span style="color:#a6e22e">Channel</span>()
-	<span style="color:#a6e22e">failOnError</span>(<span style="color:#a6e22e">err</span>, <span style="color:#e6db74">&#34;Failed to open a channel&#34;</span>)
-	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">ch</span>.<span style="color:#a6e22e">Close</span>()
+	ch, err := conn.Channel()
+	failOnError(err, &quot;Failed to open a channel&quot;)
+	defer ch.Close()
 
-	<span style="color:#a6e22e">q</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ch</span>.<span style="color:#a6e22e">QueueDeclare</span>(
-		<span style="color:#e6db74">&#34;hello&#34;</span>, <span style="color:#75715e">// name
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">false</span>,   <span style="color:#75715e">// durable
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">false</span>,   <span style="color:#75715e">// delete when unused
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">false</span>,   <span style="color:#75715e">// exclusive
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">false</span>,   <span style="color:#75715e">// no-wait
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">nil</span>,     <span style="color:#75715e">// arguments
-</span><span style="color:#75715e"></span>	)
-	<span style="color:#a6e22e">failOnError</span>(<span style="color:#a6e22e">err</span>, <span style="color:#e6db74">&#34;Failed to declare a queue&#34;</span>)
+	q, err := ch.QueueDeclare(
+		&quot;hello&quot;, // name
+		false,   // durable
+		false,   // delete when unused
+		false,   // exclusive
+		false,   // no-wait
+		nil,     // arguments
+	)
+	failOnError(err, &quot;Failed to declare a queue&quot;)
 
-	<span style="color:#a6e22e">msgs</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ch</span>.<span style="color:#a6e22e">Consume</span>(
-		<span style="color:#a6e22e">q</span>.<span style="color:#a6e22e">Name</span>, <span style="color:#75715e">// queue
-</span><span style="color:#75715e"></span>		<span style="color:#e6db74">&#34;&#34;</span>,     <span style="color:#75715e">// consumer
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">true</span>,   <span style="color:#75715e">// auto-ack
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">false</span>,  <span style="color:#75715e">// exclusive
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">false</span>,  <span style="color:#75715e">// no-local
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">false</span>,  <span style="color:#75715e">// no-wait
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">nil</span>,    <span style="color:#75715e">// args
-</span><span style="color:#75715e"></span>	)
-	<span style="color:#a6e22e">failOnError</span>(<span style="color:#a6e22e">err</span>, <span style="color:#e6db74">&#34;Failed to register a consumer&#34;</span>)
+	msgs, err := ch.Consume(
+		q.Name, // queue
+		&quot;&quot;,     // consumer
+		true,   // auto-ack
+		false,  // exclusive
+		false,  // no-local
+		false,  // no-wait
+		nil,    // args
+	)
+	failOnError(err, &quot;Failed to register a consumer&quot;)
 
-	<span style="color:#a6e22e">forever</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">bool</span>)
+	forever := make(chan bool)
 
-	<span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>() {
-		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">d</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">msgs</span> {
-			<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Received a message: %s&#34;</span>, <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">Body</span>)
+	go func() {
+		for d := range msgs {
+			log.Printf(&quot;Received a message: %s&quot;, d.Body)
 		}
 	}()
 
-	<span style="color:#a6e22e">log</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34; [*] Waiting for messages. To exit press CTRL+C&#34;</span>)
-	<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">forever</span>
+	log.Printf(&quot; [*] Waiting for messages. To exit press CTRL+C&quot;)
+	&lt;-forever
 }
-</code></pre></div><h2 id="queueing">Queueing</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Runs at background</span>
+</code></pre><h2 id="queueing">Queueing</h2>
+<pre><code># Runs at background
 brew services start rabbitmq
 
-watch <span style="color:#e6db74">&#39;/usr/local/sbin/rabbitmqctl list_queues&#39;</span>
+watch '/usr/local/sbin/rabbitmqctl list_queues'
 
 go run send.go
 
 go run receive.go
 
 brew services stop rabbitmq
-</code></pre></div><h2 id="참고">참고</h2>
+</code></pre><h2 id="참고">참고</h2>
 <ul>
 <li>
 <p><a href="https://blog.ashon.dev/blog/2018/10/14/rabbitmq-message-mirroring-using-shovel.html">RabbitMQ shovel 플러그인을 이용한 메시지 미러링</a></p>
