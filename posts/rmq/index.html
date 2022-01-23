@@ -61,10 +61,10 @@ Jan. 3, 2022
 <p>Broker(Exchange+Binding+Queue): A queue is essentially a large message buffer and bound by the host&rsquo;s memory &amp; disk limits.</p>
 <p>Consumer: A program that mostly waits to receive messages.</p>
 <h2 id="installation">Installation</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">brew install rabbitmq
+<pre><code>brew install rabbitmq
 
 go get github.com/streadway/amqp
-</code></pre></div><h2 id="sendingproducer">Sending(Producer)</h2>
+</code></pre><h2 id="sendingproducer">Sending(Producer)</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// https://github.com/rabbitmq/rabbitmq-tutorials/blob/master/go/send.go
 </span><span style="color:#75715e"></span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
