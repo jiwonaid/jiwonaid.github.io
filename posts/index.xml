@@ -14,10 +14,10 @@
       
       <guid>https://jiwonaid.github.io/posts/golang-build-tools/</guid>
       <description>부제: golang 프로젝트를 빌드하는 개발자를 위한 안내서 (Happy Hacking하지만 make로 빌드하고 싶지 않은 개발자를 위한 안내서) 고랭 빌드에 어떤 툴이 좋을까요? 정해진 답은 없지만 오늘은
-~ 할 수 있는 GoReleaser와
+~ 한 GoReleaser와
 ~한 구글의 Bazel(bazel-gazelle)에 대해서 알아봅시다.
 1. 프로젝트 준비 아래와 같이 간단한 golang 기반의 CLI 프로젝트를 준비합니다.
-go get -u github.com/spf13/cobra mkdir myapp cd myapp go mod init myapp cobra init --pkg-name myapp go get github.com/mitchellh/go-homedir go get github.com/spf13/cobra go get github.</description>
+go get -u github.com/spf13/cobra mkdir myapp cd myapp go mod init myapp cobra init --pkg-name myapp go get github.com/mitchellh/go-homedir go get github.com/spf13/cobra go get github.com/spf13/viper 아래와 같은 결과가 출력됩니다.</description>
     </item>
     
     <item>
