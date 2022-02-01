@@ -26,8 +26,9 @@
 
 <meta name="twitter:title" content="Golang Build Tools"/>
 <meta name="twitter:description" content="부제: golang 프로젝트를 빌드하는 개발자를 위한 안내서 (Happy Hacking하지만 make로 빌드하고 싶지 않은 개발자를 위한 안내서) golang 프로젝트 빌드에 어떤 툴이 좋을까요? 정해진 답은 없지만 오늘은
-간편하게 빌드와 릴리스가 가능한 GoReleaser와
-&ldquo;재현 가능하고 이식성이 뛰어나서 개발자가 코드 작성에 집중하게 해주지만 도입하는데 노력이 필요한&rdquo; 구글의 Bazel을 가능한 쉽게 사용하는 방법에 대해서 알아봅시다.
+  간편하게 빌드와 릴리스가 가능한 GoReleaser
+  &ldquo;재현 가능하고 이식성이 뛰어나서 개발자가 코드 작성에 집중하게 해주지만 도입하는데 노력이 필요한&rdquo; 구글의 Bazel
+  위 두 가지 도구에 대해 알아보겠습니다.
 1. golang 프로젝트 준비 Note: 지금부터 코드 블럭의 &lsquo;jiwonaid&rsquo;에 유의해 주세요.
 아래와 같이 간단한 golang 기반의 CLI 프로젝트를 준비합니다."/>
 
@@ -56,14 +57,20 @@ Feb. 1, 2022
 <br/><br/>
 <h2 id="부제-golang-프로젝트를-빌드하는-개발자를-위한-안내서-happy-hacking하지만-make로-빌드하고-싶지-않은-개발자를-위한-안내서">부제: golang 프로젝트를 빌드하는 개발자를 위한 안내서 <del>(Happy Hacking하지만 make로 빌드하고 싶지 않은 개발자를 위한 안내서)</del></h2>
 <p>golang 프로젝트 빌드에 어떤 툴이 좋을까요? 정해진 답은 없지만 오늘은</p>
-<p>간편하게 빌드와 릴리스가 가능한 <a href="https://goreleaser.com/">GoReleaser</a>와</p>
-<p>&ldquo;재현 가능하고 이식성이 뛰어나서 개발자가 코드 작성에 집중하게 해주지만 도입하는데 노력이 필요한&rdquo; 구글의 <a href="https://bazel.build/">Bazel</a>을 가능한 쉽게 사용하는 방법에 대해서 알아봅시다.</p>
+<ul>
+<li>
+<p>간편하게 빌드와 릴리스가 가능한 <a href="https://goreleaser.com/">GoReleaser</a></p>
+</li>
+<li>
+<p>&ldquo;재현 가능하고 이식성이 뛰어나서 개발자가 코드 작성에 집중하게 해주지만 도입하는데 노력이 필요한&rdquo; 구글의 <a href="https://bazel.build/">Bazel</a></p>
+</li>
+</ul>
+<p>위 두 가지 도구에 대해 알아보겠습니다.</p>
 <h3 id="1-golang-프로젝트-준비">1. golang 프로젝트 준비</h3>
 <p>Note: 지금부터 코드 블럭의 &lsquo;jiwonaid&rsquo;에 유의해 주세요.</p>
 <p>아래와 같이 간단한 golang 기반의 CLI 프로젝트를 준비합니다.</p>
 <pre><code>go get -u github.com/spf13/cobra
-
-mkdir golang-build-tools
+</code></pre><pre><code>mkdir golang-build-tools
 cd golang-build-tools
 go mod init github.com/jiwonaid/golang-build-tools
 
@@ -93,7 +100,6 @@ git push -u origin main
 <p>GoReleaser is a release automation tool for Go projects. The goal is to simplify the build, release and publish steps while providing variant customization options for all steps.</p>
 <p>번역: GoReleaser는 Go 프로젝트들을 위한 릴리스 자동화 도구로 빌드, 릴리스, 퍼블리시를 간소화하고 다양한 사용자 옵션을 제공하는 것을 목표로 합니다.</p>
 <pre><code># brew install goreleaser/tap/goreleaser
-
 brew install goreleaser
 
 goreleaser init
@@ -104,7 +110,6 @@ git push
 # github에서 GITHUB_TOKEN 생성
 # https://github.com/settings/tokens
 # write:packages
-
 export GITHUB_TOKEN=&quot;YOUR_GH_TOKEN&quot;
 
 git tag -a v0.1.0 -m &quot;goreleaser release&quot;
