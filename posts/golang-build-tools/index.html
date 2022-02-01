@@ -25,11 +25,11 @@
 
 
 <meta name="twitter:title" content="Golang Build Tools"/>
-<meta name="twitter:description" content="부제: golang 프로젝트를 빌드하는 개발자를 위한 안내서 (Happy Hacking하지만 make로 빌드하고 싶지 않은 개발자를 위한 안내서) 고랭 빌드에 어떤 툴이 좋을까요? 정해진 답은 없지만 오늘은
-~ 한 GoReleaser와
+<meta name="twitter:description" content="부제: golang 프로젝트를 빌드하는 개발자를 위한 안내서 (Happy Hacking하지만 make로 빌드하고 싶지 않은 개발자를 위한 안내서) golang 프로젝트 빌드에 어떤 툴이 좋을까요? 정해진 답은 없지만 오늘은
+간편하게 빌드와 릴리스가 가능한 GoReleaser와
 ~한 구글의 Bazel(bazel-gazelle)에 대해서 알아봅시다.
 1. 프로젝트 준비 아래와 같이 간단한 golang 기반의 CLI 프로젝트를 준비합니다.
-go get -u github.com/spf13/cobra mkdir myapp cd myapp go mod init myapp cobra init --pkg-name myapp go get github.com/mitchellh/go-homedir go get github.com/spf13/cobra go get github.com/spf13/viper 아래와 같은 결과가 출력됩니다."/>
+go get -u github.com/spf13/cobra mkdir golang-build-tools cd golang-build-tools go mod init golang-build-tools cobra init --pkg-name golang-build-tools go get github.com/mitchellh/go-homedir go get github.com/spf13/cobra go get github."/>
 
 </head>
 <body class="terminal">
@@ -55,24 +55,24 @@ Feb. 1, 2022
 
 <br/><br/>
 <h2 id="부제-golang-프로젝트를-빌드하는-개발자를-위한-안내서-happy-hacking하지만-make로-빌드하고-싶지-않은-개발자를-위한-안내서">부제: golang 프로젝트를 빌드하는 개발자를 위한 안내서 <del>(Happy Hacking하지만 make로 빌드하고 싶지 않은 개발자를 위한 안내서)</del></h2>
-<p>고랭 빌드에 어떤 툴이 좋을까요? 정해진 답은 없지만 오늘은</p>
-<p>~ 한 <a href="https://goreleaser.com/">GoReleaser</a>와</p>
+<p>golang 프로젝트 빌드에 어떤 툴이 좋을까요? 정해진 답은 없지만 오늘은</p>
+<p>간편하게 빌드와 릴리스가 가능한 <a href="https://goreleaser.com/">GoReleaser</a>와</p>
 <p>~한 구글의 <a href="https://bazel.build/">Bazel(bazel-gazelle)</a>에 대해서 알아봅시다.</p>
 <h3 id="1-프로젝트-준비">1. 프로젝트 준비</h3>
 <p>아래와 같이 간단한 golang 기반의 CLI 프로젝트를 준비합니다.</p>
 <pre><code>go get -u github.com/spf13/cobra
 
-mkdir myapp
-cd myapp
-go mod init myapp
+mkdir golang-build-tools
+cd golang-build-tools
+go mod init golang-build-tools
 
-cobra init --pkg-name myapp
+cobra init --pkg-name golang-build-tools
 
 go get github.com/mitchellh/go-homedir
 go get github.com/spf13/cobra
 go get github.com/spf13/viper
 </code></pre><p>아래와 같은 결과가 출력됩니다.</p>
-<pre><code># cd myapp
+<pre><code># cd golang-build-tools
 
 go run main.go
 A longer description that spans multiple lines and likely contains
@@ -81,24 +81,45 @@ examples and usage of using your application. For example:
 Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.
-</code></pre><p>이제 2-A, 2-B 중 취향에 빌드 도구를 선택하여 적용합니다.</p>
-<h3 id="2-a-goreleaser-적용">2-A. GoReleaser 적용</h3>
-<p>GoReleaser is a release automation tool for Go projects. The goal is to simplify the build, release and publish steps while providing variant customization options for all steps.</p>
-<p>GoReleaser는 Go 프로젝트들을 위한 릴리즈 자동화 도구로 빌드, 릴리즈, 퍼블리시를 간소화하고 다양한 사용자 옵션을 제공하는 것이 목표입니다.</p>
-<pre><code># brew install goreleaser/tap/goreleaser
-brew install goreleaser
-</code></pre><pre><code>goreleaser init
+</code></pre><p>이제 git을 설정하고 2-A, 2-B 중 취향에 빌드 도구를 선택하여 적용합니다.</p>
+<pre><code># github에서 repository 생성
 
+git init
+git add .
+git commit -m &quot;Add cobra&quot;
+git branch -M main
+git remote add origin https://github.com/jiwonaid/golang-build-tools.git
+git push -u origin main
+</code></pre><h3 id="2-a-goreleaser-적용">2-A. GoReleaser 적용</h3>
+<p>GoReleaser is a release automation tool for Go projects. The goal is to simplify the build, release and publish steps while providing variant customization options for all steps.</p>
+<p>번역: GoReleaser는 Go 프로젝트들을 위한 릴리스 자동화 도구로 빌드, 릴리스, 퍼블리시를 간소화하고 다양한 사용자 옵션을 제공하는 것이 목표입니다.</p>
+<pre><code># brew install goreleaser/tap/goreleaser
+
+brew install goreleaser
+
+# https://goreleaser.com/quick-start/
+
+goreleaser init
+git add .
+git commit -m &quot;Add goreleaser&quot;
+git push
+
+# github에서 GITHUB_TOKEN 생성
 # https://github.com/settings/tokens
 # write:packages
-export GITHUB_TOKEN=&quot;YOUR_GH_TOKEN&quot;
-export GITHUB_TOKEN=&quot;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&quot;
 
-git tag -a v0.1.0 -m &quot;First release&quot;
+export GITHUB_TOKEN=&quot;YOUR_GH_TOKEN&quot;
+
+git tag -a v0.1.0 -m &quot;goreleaser release&quot;
 git push origin v0.1.0
 
-goreleaser release
-</code></pre><h3 id="2-b-bazelbazel-gazelle-적용">2-B. Bazel(bazel-gazelle) 적용</h3>
+goreleaser build
+</code></pre><p>아래와 같이 릴리스도 가능합니다.</p>
+<pre><code>goreleaser release
+</code></pre><p><img src="https://user-images.githubusercontent.com/26996017/151941462-5577a6db-90cf-4165-a54a-c2d3236b01ff.png" alt="goreleaser release"></p>
+<h3 id="2-b-bazelbazel-gazelle-적용">2-B. Bazel(bazel-gazelle) 적용</h3>
+<h3 id="결과물">결과물</h3>
+<p><a href="https://github.com/jiwonaid/golang-build-tools">https://github.com/jiwonaid/golang-build-tools</a></p>
 
 
 
