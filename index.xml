@@ -15,10 +15,10 @@
       <guid>https://jiwonaid.github.io/posts/golang-build-tools/</guid>
       <description>부제: golang 프로젝트를 빌드하는 개발자를 위한 안내서 (Happy Hacking하지만 make로 빌드하고 싶지 않은 개발자를 위한 안내서) golang 프로젝트 빌드에 어떤 툴이 좋을까요? 정해진 답은 없지만 오늘은
   간편하게 빌드와 릴리스가 가능한 GoReleaser
+  간편하게 이미지를 빌드하고 푸시할 수 있는 ko
   &amp;ldquo;재현 가능하고 이식성이 뛰어나서 개발자가 코드 작성에 집중하게 해주지만 도입하는데 노력이 필요한&amp;rdquo; 구글의 Bazel
-  위 두 가지 도구에 대해 알아보겠습니다.
-1. golang 프로젝트 준비 Note: 지금부터 코드 블럭의 &amp;lsquo;jiwonaid&amp;rsquo;에 유의해 주세요.
-아래와 같이 간단한 golang 기반의 CLI 프로젝트를 준비합니다.</description>
+  위 세 가지 도구에 대해 알아보겠습니다.
+1. golang 프로젝트 준비 Note: 지금부터 코드 블럭의 &amp;lsquo;jiwonaid&amp;rsquo;에 유의해 주세요.</description>
     </item>
     
     <item>
