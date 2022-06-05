@@ -6,7 +6,21 @@
     <description>Recent content in Posts on &gt; /tmp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-kr</language>
-    <lastBuildDate>Tue, 01 Feb 2022 16:20:07 +0900</lastBuildDate><atom:link href="https://jiwonaid.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 Jun 2022 19:40:18 +0900</lastBuildDate><atom:link href="https://jiwonaid.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>runcontainers</title>
+      <link>https://jiwonaid.github.io/posts/runcontainers/</link>
+      <pubDate>Sun, 05 Jun 2022 19:40:18 +0900</pubDate>
+      
+      <guid>https://jiwonaid.github.io/posts/runcontainers/</guid>
+      <description>Learning Containers From The Bottom Up
+  Does a Container Image Have an OS Inside
+  Container Networking Is Simple!
+  Containers vs. Pods - Taking a Deeper Look
+  What Is a Standard Container (2021 edition)
+  </description>
+    </item>
+    
     <item>
       <title>Golang Build Tools</title>
       <link>https://jiwonaid.github.io/posts/golang-build-tools/</link>
