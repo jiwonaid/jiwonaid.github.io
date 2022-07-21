@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko-kr">
+<head>
+    <meta name="google-site-verification" content="iGuwne5LJzJBBoCxsCg4BhAYCzXlzuvrOufVjQCreyA" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>&gt; /tmp</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+    <link rel="stylesheet" href="https://jiwonaid.github.io/hugo-theme-console/css/terminal-0.7.1.min.css">
+    <link rel="stylesheet" href="https://jiwonaid.github.io/hugo-theme-console/css/animate-3.7.2.min.css">
+    <link rel="stylesheet" href="https://jiwonaid.github.io/hugo-theme-console/css/console.css">
+    
+      <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <meta property="og:title" content="" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jiwonaid.github.io/posts/wip/" />
+
+
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="데브옵스 트러블슈팅 01장 문제 해결 우수사례 02장 왜 서버가 이렇게 느리지? CPU, RAM 그리고 디스크 I/O의 자원 고갈 부하 문제 진단 CPU, RAM, 디스크 I/O 순으로 확인
+top iotop 부하 문제 해결하기 sysstat 03장 왜 시스템이 부팅되지 않을까? 부팅 문제 해결하기 리눅스 부팅 과정   바이오스
+  부트 로더(GRUB)
+  initrd
+  /sbin/init(systemd)
+  (cloud-init)
+  바이오스 부팅 순서 GRUB 문제 해결 루트 파일 시스템을 마운트할 수 없는 경우 보조 파일 시스템을 마운트할 수 없는 경우 04장 왜 디스크에 쓸 수 없는가?"/>
+
+</head>
+<body class="terminal">
+    <div class="container">
+        <div class="terminal-nav" onclick="focusTerminal()">
+          <header class="terminal-logo">
+            <div class="logo terminal-prompt">
+              
+              
+              <a href="https://jiwonaid.github.io/" class="no-style ">&gt; /tmp</a>:/<spam id="path"><a href='https://jiwonaid.github.io/posts'>posts</a>/<a href='https://jiwonaid.github.io/posts/wip'>wip</a>/</spam>$
+              <input id="input" autofocus style="color: transparent; text-shadow: 0 0 0 black;"></div></header>
+          
+        </div>
+        <p id="output">Supported commands: ls, cd ${PATH}</p>
+    </div>
+
+    <div class="container " >
+        
+<h1></h1>
+
+Jan. 1, 0001
+
+
+<br/><br/>
+<h1 id="데브옵스-트러블슈팅">데브옵스 트러블슈팅</h1>
+<h2 id="01장-문제-해결-우수사례">01장 문제 해결 우수사례</h2>
+<h2 id="02장-왜-서버가-이렇게-느리지-cpu-ram-그리고-디스크-io의-자원-고갈">02장 왜 서버가 이렇게 느리지? CPU, RAM 그리고 디스크 I/O의 자원 고갈</h2>
+<h3 id="부하-문제-진단">부하 문제 진단</h3>
+<p>CPU, RAM, 디스크 I/O 순으로 확인</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">top
+iotop
+</code></pre></div><h3 id="부하-문제-해결하기">부하 문제 해결하기</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sysstat
+</code></pre></div><h2 id="03장-왜-시스템이-부팅되지-않을까-부팅-문제-해결하기">03장 왜 시스템이 부팅되지 않을까? 부팅 문제 해결하기</h2>
+<h3 id="리눅스-부팅-과정">리눅스 부팅 과정</h3>
+<ol>
+<li>
+<p>바이오스</p>
+</li>
+<li>
+<p>부트 로더(GRUB)</p>
+</li>
+<li>
+<p>initrd</p>
+</li>
+<li>
+<p>/sbin/init(systemd)</p>
+</li>
+<li>
+<p>(cloud-init)</p>
+</li>
+</ol>
+<h3 id="바이오스-부팅-순서">바이오스 부팅 순서</h3>
+<h3 id="grub-문제-해결">GRUB 문제 해결</h3>
+<h3 id="루트-파일-시스템을-마운트할-수-없는-경우">루트 파일 시스템을 마운트할 수 없는 경우</h3>
+<h3 id="보조-파일-시스템을-마운트할-수-없는-경우">보조 파일 시스템을 마운트할 수 없는 경우</h3>
+<h2 id="04장-왜-디스크에-쓸-수-없는가-용량이-가득-찼거나-오류가-생긴-디스크-문제-해결하기">04장 왜 디스크에 쓸 수 없는가? 용량이 가득 찼거나 오류가 생긴 디스크 문제 해결하기</h2>
+<h3 id="디스크가-가득-찼을-때">디스크가 가득 찼을 때</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">df -h
+du
+</code></pre></div><h3 id="아이노드가-고갈된-경우">아이노드가 고갈된 경우</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">df -i
+</code></pre></div><h3 id="파일-시스템이-읽기-전용인-경우">파일 시스템이 읽기 전용인 경우</h3>
+<h3 id="손상된-파일-시스템-고치기">손상된 파일 시스템 고치기</h3>
+<h3 id="소프트웨어-raid-고치기">소프트웨어 RAID 고치기</h3>
+<h2 id="05장-서버가-다운됐는가-네트워크-문제-원인-추적하기">05장 서버가 다운됐는가? 네트워크 문제 원인 추적하기</h2>
+<h3 id="서버-a가-서버-b와-통신할-수-없는-경우">서버 A가 서버 B와 통신할 수 없는 경우</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ethtool
+
+ifconfig
+
+route
+
+ping
+
+nslookup
+
+traceroute
+tcptraceroute
+
+telnet
+nmap
+
+netstat
+
+iptables
+</code></pre></div><h3 id="느린-네트워크-문제-해결하기">느린 네트워크 문제 해결하기</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">iftop
+</code></pre></div><h3 id="패킷-수집">패킷 수집</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tcpdump
+</code></pre></div><h2 id="06장-왜-호스트-이름이-해석되지-않을까-dns-서버-문제-해결하기">06장 왜 호스트 이름이 해석되지 않을까? DNS 서버 문제 해결하기</h2>
+<h3 id="dns-클라이언트-문제-해결">DNS 클라이언트 문제 해결</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">nslookup
+dig
+</code></pre></div><h3 id="dns-서버-문제-해결">DNS 서버 문제 해결</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">dig <span style="color:#e6db74">${</span>FQDN<span style="color:#e6db74">}</span> +trace
+dig <span style="color:#e6db74">${</span>FQDN<span style="color:#e6db74">}</span> NS
+dig <span style="color:#e6db74">${</span>FQDN<span style="color:#e6db74">}</span> @I.P.
+dig <span style="color:#e6db74">${</span>FQDN<span style="color:#e6db74">}</span> SOA
+</code></pre></div><h2 id="07장-왜-이메일이-전송되지-않을까-이메일-문제-추적하기">07장 왜 이메일이 전송되지 않을까? 이메일 문제 추적하기</h2>
+<p>이메일 요청</p>
+<ol>
+<li>
+<p>이메일 요청, mail spool</p>
+</li>
+<li>
+<p>MX 레코드 dns 질의</p>
+</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"> ☁  ~  dig gmail.com MX +short
+<span style="color:#ae81ff">5</span> gmail-smtp-in.l.google.com.
+<span style="color:#ae81ff">10</span> alt1.gmail-smtp-in.l.google.com.
+<span style="color:#ae81ff">20</span> alt2.gmail-smtp-in.l.google.com.
+<span style="color:#ae81ff">30</span> alt3.gmail-smtp-in.l.google.com.
+<span style="color:#ae81ff">40</span> alt4.gmail-smtp-in.l.google.com.
+</code></pre></div><ol>
+<li>25/465 포트로 SMTP 연결</li>
+</ol>
+<h2 id="08장-웹-사이트가-다운됐는가-웹-서버-문제-추적하기">08장 웹 사이트가 다운됐는가? 웹 서버 문제 추적하기</h2>
+<p>&hellip;</p>
+<h2 id="09장-왜-데이터베이스가-느린가-데이터베이스-문제-추적하기">09장 왜 데이터베이스가 느린가? 데이터베이스 문제 추적하기</h2>
+<p>&hellip;</p>
+<h2 id="10장-그건-하드웨어-고장이야-일반적인-하드웨어-문제-진단하기">10장 그건 하드웨어 고장이야! 일반적인 하드웨어 문제 진단하기</h2>
+<p>&hellip;</p>
+
+
+
+        <div class="footer">
+    Powered by <a href="https://gohugo.io/">Hugo</a>.
+</div>
+
+    </div>
+  </body>
+  <script>
+    var input = document.getElementById("input");
+    input.style.width = "1ch";
+
+    input.blur();
+    function focusTerminal() {
+      input.focus();
+    }
+
+    input.addEventListener('input', function () {
+      input.style.width = input.value.length + 1 + "ch";
+    });
+
+    input.addEventListener('keydown', function () {
+      if (event.key == 'Enter') {
+        if (input.value == "ls") {
+          var path = document.getElementById("path");
+          var output = document.getElementById("output");
+          var text = ".\n..\n";
+
+          if ( path.innerText == "") {
+            text += "about\nposts";
+          }
+          else if (path.innerText == "posts/") {
+            text += "";
+            text = text.replace(/\/posts\//g, "");
+            text = text.replace(/\//g, "\n");
+          }
+
+          input.value = "";
+          input.style.width = "1ch";
+          output.innerText = text;
+        }
+        else if (input.value.substr(0, 3) == "cd ") {
+          var text = input.value;
+          text = text.replace("cd ", "");
+          window.location.href = text;
+        }
+      }
+    });
+  </script>
+</html>

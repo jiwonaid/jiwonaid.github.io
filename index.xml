@@ -170,6 +170,21 @@ deploy@vm-instance:~$ systemctl cat cloud-init.target # /lib/systemd/system/clou
     </item>
     
     <item>
+      <title></title>
+      <link>https://jiwonaid.github.io/posts/wip/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://jiwonaid.github.io/posts/wip/</guid>
+      <description>데브옵스 트러블슈팅 01장 문제 해결 우수사례 02장 왜 서버가 이렇게 느리지? CPU, RAM 그리고 디스크 I/O의 자원 고갈 부하 문제 진단 CPU, RAM, 디스크 I/O 순으로 확인
+top iotop 부하 문제 해결하기 sysstat 03장 왜 시스템이 부팅되지 않을까? 부팅 문제 해결하기 리눅스 부팅 과정   바이오스
+  부트 로더(GRUB)
+  initrd
+  /sbin/init(systemd)
+  (cloud-init)
+  바이오스 부팅 순서 GRUB 문제 해결 루트 파일 시스템을 마운트할 수 없는 경우 보조 파일 시스템을 마운트할 수 없는 경우 04장 왜 디스크에 쓸 수 없는가?</description>
+    </item>
+    
+    <item>
       <title>777.77:1</title>
       <link>https://jiwonaid.github.io/adamantium/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
