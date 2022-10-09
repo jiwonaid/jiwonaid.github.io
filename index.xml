@@ -202,7 +202,7 @@ deploy@vm-instance:~$ systemctl cat cloud-init.target # /lib/systemd/system/clou
       
       <guid>https://jiwonaid.github.io/about/</guid>
       <description>Work on cloud computing services (Linux, Kubernetes, and OpenStack).
-Have an interest in open-source cloud computing technologies like Agones.
+Have an interest in open source cloud computing technologies like Agones.
 (more)</description>
     </item>
     
