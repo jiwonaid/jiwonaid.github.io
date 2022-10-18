@@ -188,11 +188,7 @@ deploy@vm-instance:~$ systemctl cat cloud-init.target # /lib/systemd/system/clou
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://jiwonaid.github.io/adamantium/</guid>
-      <description>모델솔루션 공모청약: 2022-09-27
-공모가(원): 27,000
-일반청약자: 250,000~300,000 주 (25~30%) / 청약한도: 8,000~10,000 주 / KB증권
-경쟁률: 1,725.78:1
-확약: 8.12%</description>
+      <description></description>
     </item>
     
     <item>
