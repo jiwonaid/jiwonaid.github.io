@@ -188,7 +188,12 @@ deploy@vm-instance:~$ systemctl cat cloud-init.target # /lib/systemd/system/clou
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://jiwonaid.github.io/adamantium/</guid>
-      <description>스튜디오미르 공모청약: 2023-01-27
+      <description>샌즈랩 공모청약: 2023-02-07
+공모가(원): 10,500
+일반청약자: 750,000~900,000 주 (25~30%) / 청약한도: 50,000~70,000 주 / 키움증권
+경쟁률: 1,325.79:1
+확약: 1.41%
+스튜디오미르 공모청약: 2023-01-27
 공모가(원): 19,500
 일반청약자: 250,000~300,000 주 (25~30%) / 청약한도: 12,500~15,000 주 / 미래에셋증권
 경쟁률: 1,701.62:1
