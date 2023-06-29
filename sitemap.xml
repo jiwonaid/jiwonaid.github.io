@@ -109,12 +109,6 @@
     
         
         <url>
-            <loc>https://jiwonaid.github.io/adamantium/</loc>
-        </url>
-        
-    
-        
-        <url>
             <loc>https://jiwonaid.github.io/about/</loc>
         </url>
         
@@ -122,6 +116,12 @@
         
         <url>
             <loc>https://jiwonaid.github.io/categories/</loc>
+        </url>
+        
+    
+        
+        <url>
+            <loc>https://jiwonaid.github.io/adamantium/</loc>
         </url>
         
     
