@@ -13,7 +13,7 @@
       <pubDate>Sat, 06 Jan 2024 22:59:06 +0900</pubDate>
       
       <guid>https://jiwonaid.github.io/posts/wsl/</guid>
-      <description>WSL 2 VPN not working or no internet PS C:\Users\jiwonaid&amp;gt; cat C:\Users\jiwonaid\.wslconfig [wsl2] networkingMode=mirrored ref.
+      <description>Create .wslconfig and shutdown PS C:\Users\jiwonaid&amp;gt; cat C:\Users\jiwonaid\.wslconfig [wsl2] networkingMode=mirrored PS C:\Users\jiwonaid&amp;gt; wsl --shutdown ref.
   .wslconfig
   Mirrored mode networking
   P.S.
