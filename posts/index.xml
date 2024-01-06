@@ -6,7 +6,20 @@
     <description>Recent content in Posts on &gt; /tmp</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ko-kr</language>
-    <lastBuildDate>Sat, 23 Jul 2022 15:52:11 +0900</lastBuildDate><atom:link href="https://jiwonaid.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 06 Jan 2024 22:59:06 +0900</lastBuildDate><atom:link href="https://jiwonaid.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>WSL 2 VPN not working or no internet</title>
+      <link>https://jiwonaid.github.io/posts/wsl/</link>
+      <pubDate>Sat, 06 Jan 2024 22:59:06 +0900</pubDate>
+      
+      <guid>https://jiwonaid.github.io/posts/wsl/</guid>
+      <description>WSL 2 VPN not working or no internet PS C:\Users\jiwonaid&amp;gt; cat C:\Users\jiwonaid\.wslconfig [wsl2] networkingMode=mirrored ref.
+  .wslconfig
+  Mirrored mode networking
+  P.S.
+ DNS Tunneling  </description>
+    </item>
+    
     <item>
       <title>DevOps Troubleshooting</title>
       <link>https://jiwonaid.github.io/posts/dt/</link>
