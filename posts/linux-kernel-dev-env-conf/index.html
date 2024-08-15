@@ -25,7 +25,7 @@
 
 
 <meta name="twitter:title" content="Linux Kernel Dev Env Configuration"/>
-<meta name="twitter:description" content="Host sudo apt install snapd # https://multipass.run/docs/installing-on-linux sudo snap install multipass # https://multipass.run/docs/using-libvirt sudo apt install libvirt-daemon-system sudo snap connect multipass:libvirt sudo multipass stop --all sudo multipass set local.driver=libvirt # https://multipass.run/docs/launch-command sudo multipass launch -c 12 -d 128G -m 32G -n mp # Check libvirt virsh console mp Guest vi /etc/default/grub GRUB_DEFAULT=3 GRUB_TIMEOUT_STYLE=menu GRUB_TIMEOUT=3 update-grub2 # https://kernelnewbies.org/KernelBuild apt-get install libncurses5-dev gcc make git exuberant-ctags bc libssl-dev flex bison libelf-dev git clone https://kernel."/>
+<meta name="twitter:description" content="Host sudo apt install snapd # https://multipass.run/docs/installing-on-linux sudo snap install multipass # https://multipass.run/docs/using-libvirt sudo apt install libvirt-daemon-system sudo snap connect multipass:libvirt sudo multipass stop --all sudo multipass set local.driver=libvirt # https://multipass.run/docs/launch-command sudo multipass launch -n mp # Check libvirt virsh console mp Guest vi /etc/default/grub GRUB_DEFAULT=3 GRUB_TIMEOUT_STYLE=menu GRUB_TIMEOUT=3 update-grub2 # https://kernelnewbies.org/KernelBuild sudo apt-get install libncurses5-dev gcc make git exuberant-ctags bc libssl-dev flex bison libelf-dev git clone https://kernel.googlesource.com/pub/scm/linux/kernel/git/netdev/net-next.git cd net-next cp /boot/config-`uname -r`* ."/>
 
 </head>
 <body class="terminal">
@@ -66,7 +66,7 @@ sudo multipass stop --all
 sudo multipass set local.driver=libvirt
 
 # https://multipass.run/docs/launch-command
-sudo multipass launch -c 12 -d 128G -m 32G -n mp
+sudo multipass launch -n mp
 
 # Check libvirt
 virsh console mp
@@ -79,8 +79,7 @@ GRUB_TIMEOUT=3
 
 update-grub2
 </code></pre><pre><code># https://kernelnewbies.org/KernelBuild
-
-apt-get install libncurses5-dev gcc make git exuberant-ctags bc libssl-dev flex bison libelf-dev
+sudo apt-get install libncurses5-dev gcc make git exuberant-ctags bc libssl-dev flex bison libelf-dev
 
 git clone https://kernel.googlesource.com/pub/scm/linux/kernel/git/netdev/net-next.git
 
@@ -89,15 +88,14 @@ cd net-next
 cp /boot/config-`uname -r`* .config
 </code></pre><pre><code>make menuconfig
 
-# TUI(text-based user interfaces)
 - Networking support
     Networking options: enable all
 
 - Kernel hacking
     printk and dmesg options: enable all
-    Memory Debugging: enable KASAN
-    Lock Debugging: enable Lock debugging, disable torture tests for locking
-</code></pre><pre><code>make -j$(nproc)
+    Memory Debugging: enable all
+    Lock Debugging: enable all, disable torture tests for locking
+</code></pre><pre><code>make -j$(nproc) C=1 W=1
 
 make modules
 
@@ -106,24 +104,22 @@ make modules_install install
 update-grub2
 
 reboot
-</code></pre><h2 id="net">net/</h2>
-<pre><code>
-# Do patch
+</code></pre><h2 id="net-next">net-next/</h2>
+<pre><code># Do patch
 # vi ${FILE}
 
 ./scripts/checkpatch.pl ${FILE}
 
 # git commit
-ipv6: change return type from int to void for mld_process_v2
+ipv6: Change return type from int to void for mld_process_v2
 
 The mld_process_v2 only returned 0.
-
 So, the return type is changed to void.
 
 Signed-off-by: First Last &lt;${EMAIL}@gmail.com&gt;
 
 # git format-patch
-git format-patch -o patches/ --subject-prefix=&quot;PATCH net-next&quot; ${SHA}^
+git format-patch -o patches/ --subject-prefix=&quot;PATCH&quot; ${SHA}^
 
 # Check patch
 ./scripts/checkpatch.pl patches/${PATCH}
@@ -136,7 +132,9 @@ git config --global sendemail.smtpencryption ssl
 
 ./scripts/get_maintainer.pl patches/${PATCH}
 
-git send-email --from=&quot;&quot; --to=&quot;&quot; --cc=&quot;&quot; patches/${PATCH}
+git send-email --to=&quot;&quot; --cc=&quot;&quot; patches/${PATCH}
+
+# https://staticthinking.wordpress.com/2022/07/27/how-to-send-a-v2-patch/
 </code></pre><h2 id="results">Results</h2>
 <p><a href="https://patchwork.kernel.org/project/netdevbpf/patch/20210901153449.26067-1-jiwonaid0@gmail.com/">https://patchwork.kernel.org/project/netdevbpf/patch/20210901153449.26067-1-jiwonaid0@gmail.com/</a></p>
 <p><a href="https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git/commit/?id=3f22bb137eb03ab27eaaa8b40d3e072eb541444e">https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net.git/commit/?id=3f22bb137eb03ab27eaaa8b40d3e072eb541444e</a></p>

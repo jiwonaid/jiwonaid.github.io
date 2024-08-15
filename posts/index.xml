@@ -166,7 +166,7 @@ Github Actions 처음 블로그를 생성하고 배포를 여러 번 반복하�
       <pubDate>Thu, 02 Sep 2021 22:07:46 +0900</pubDate>
       
       <guid>https://jiwonaid.github.io/posts/linux-kernel-dev-env-conf/</guid>
-      <description>Host sudo apt install snapd # https://multipass.run/docs/installing-on-linux sudo snap install multipass # https://multipass.run/docs/using-libvirt sudo apt install libvirt-daemon-system sudo snap connect multipass:libvirt sudo multipass stop --all sudo multipass set local.driver=libvirt # https://multipass.run/docs/launch-command sudo multipass launch -c 12 -d 128G -m 32G -n mp # Check libvirt virsh console mp Guest vi /etc/default/grub GRUB_DEFAULT=3 GRUB_TIMEOUT_STYLE=menu GRUB_TIMEOUT=3 update-grub2 # https://kernelnewbies.org/KernelBuild apt-get install libncurses5-dev gcc make git exuberant-ctags bc libssl-dev flex bison libelf-dev git clone https://kernel.</description>
+      <description>Host sudo apt install snapd # https://multipass.run/docs/installing-on-linux sudo snap install multipass # https://multipass.run/docs/using-libvirt sudo apt install libvirt-daemon-system sudo snap connect multipass:libvirt sudo multipass stop --all sudo multipass set local.driver=libvirt # https://multipass.run/docs/launch-command sudo multipass launch -n mp # Check libvirt virsh console mp Guest vi /etc/default/grub GRUB_DEFAULT=3 GRUB_TIMEOUT_STYLE=menu GRUB_TIMEOUT=3 update-grub2 # https://kernelnewbies.org/KernelBuild sudo apt-get install libncurses5-dev gcc make git exuberant-ctags bc libssl-dev flex bison libelf-dev git clone https://kernel.googlesource.com/pub/scm/linux/kernel/git/netdev/net-next.git cd net-next cp /boot/config-`uname -r`* .</description>
     </item>
     
     <item>
