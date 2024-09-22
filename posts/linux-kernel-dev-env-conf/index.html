@@ -95,6 +95,9 @@ cp /boot/config-`uname -r`* .config
     printk and dmesg options: enable all
     Memory Debugging: enable all
     Lock Debugging: enable all, disable torture tests for locking
+
+# scripts/config --set-str SYSTEM_TRUSTED_KEYS &quot;&quot;
+# scripts/config --set-str SYSTEM_REVOCATION_KEYS &quot;&quot;
 </code></pre><pre><code>make -j$(nproc) # C=1 W=1
 
 make modules
