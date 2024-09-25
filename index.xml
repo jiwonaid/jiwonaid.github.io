@@ -211,7 +211,7 @@ deploy@vm-instance:~$ systemctl cat cloud-init.target # /lib/systemd/system/clou
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://jiwonaid.github.io/adamantium/</guid>
-      <description>2024-09-24 00:00:00 VOO ETF의 종가와 종가의 3, 5, 10일 이동평균을 비교합니다.</description>
+      <description>2024-09-25 00:00:00 VOO ETF의 종가와 종가의 3, 5, 10일 이동평균을 비교합니다.</description>
     </item>
     
   </channel>
